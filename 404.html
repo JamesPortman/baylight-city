@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signal Lost — Baylight After Image</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0c0e;--ink:#e8edf1;--muted:#8a99a6;--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;--line:rgba(255,255,255,.09)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    overflow:hidden;position:relative}
+  body::before{content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(800px 480px at 50% 20%,rgba(57,240,138,.10),transparent 60%),
+      radial-gradient(700px 600px at 80% 90%,rgba(60,90,120,.16),transparent 60%),
+      linear-gradient(180deg,#0a0c0e,#0c1014 60%,#0a0c0e)}
+  .scan{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+  .wrap{position:relative;z-index:2;padding:40px 28px;max-width:620px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06)}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 10px var(--green);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(72px,16vw,150px);line-height:.9;letter-spacing:.02em;margin:26px 0 2px;color:var(--steel)}
+  h2{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(20px,4vw,30px);letter-spacing:.04em;margin-bottom:16px}
+  p{color:var(--muted);font-size:17px;max-width:42ch;margin:0 auto 30px}
+  .mono{font-family:'JetBrains Mono',monospace;color:var(--steel);font-size:14px;
+    letter-spacing:.02em;margin-bottom:30px}
+  a.btn{display:inline-block;font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.05em;
+    text-transform:uppercase;font-size:13px;padding:15px 28px;border-radius:3px;text-decoration:none;
+    background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.25);transition:.2s}
+  a.btn:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.45)}
+</style>
+</head>
+<body>
+<div class="scan"></div>
+<div class="wrap">
+  <span class="chip">Signal Lost / 404</span>
+  <h1>404</h1>
+  <h2>This Corridor Doesn't Exist</h2>
+  <p>The page you're looking for isn't on the grid. Baylight has no record of it — and for once, that's fine.</p>
+  <p class="mono">&gt; THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.</p>
+  <a class="btn" href="/">Back to Baylight</a>
+</div>
+</body>
+</html>
