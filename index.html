@@ -168,11 +168,11 @@
 
   /* CHAPTERS */
   .chapters{background:var(--bg-2);border-top:1px solid var(--line)}
-  .ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 50px;margin-top:36px}
-  .ch{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .ch-grid{column-count:2;column-gap:50px;margin-top:36px}
+  .ch{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline;break-inside:avoid}
   .ch .n{font-family:'JetBrains Mono';font-size:12px;color:var(--green-dim);min-width:34px}
   .ch .t{font-size:15px;color:#cdd7df}
-  @media(max-width:780px){.ch-grid{grid-template-columns:1fr}}
+  @media(max-width:780px){.ch-grid{column-count:1}}
 
   /* SIGNUP */
   .signup{position:relative;overflow:hidden}
@@ -324,28 +324,28 @@
     <h2 class="sec">23 Chapters</h2>
     <div class="ch-grid">
       <div class="ch"><span class="n">00</span><span class="t">Prologue</span></div>
-      <div class="ch"><span class="n">12</span><span class="t">Atlas, Not a Leash</span></div>
       <div class="ch"><span class="n">01</span><span class="t">Courtesy Reminder</span></div>
-      <div class="ch"><span class="n">13</span><span class="t">Museum of Trust</span></div>
       <div class="ch"><span class="n">02</span><span class="t">Bones of the City</span></div>
-      <div class="ch"><span class="n">14</span><span class="t">How Consent Becomes Law</span></div>
       <div class="ch"><span class="n">03</span><span class="t">The Vent</span></div>
-      <div class="ch"><span class="n">15</span><span class="t">Privacy as Collateral</span></div>
       <div class="ch"><span class="n">04</span><span class="t">Under the Viaduct</span></div>
-      <div class="ch"><span class="n">16</span><span class="t">The Alternative Arrives</span></div>
       <div class="ch"><span class="n">05</span><span class="t">Doors Are All You Ever Get</span></div>
-      <div class="ch"><span class="n">17</span><span class="t">Turn: Replace or Die</span></div>
       <div class="ch"><span class="n">06</span><span class="t">Shielded Drawer</span></div>
-      <div class="ch"><span class="n">18</span><span class="t">Cutover Math</span></div>
       <div class="ch"><span class="n">07</span><span class="t">Asset Removal Detected</span></div>
-      <div class="ch"><span class="n">19</span><span class="t">Casey's Truth</span></div>
       <div class="ch"><span class="n">08</span><span class="t">Under the Order</span></div>
-      <div class="ch"><span class="n">20</span><span class="t">The Bargain Shown</span></div>
       <div class="ch"><span class="n">09</span><span class="t">Safe Mode</span></div>
-      <div class="ch"><span class="n">21</span><span class="t">The Corridor</span></div>
       <div class="ch"><span class="n">10</span><span class="t">Send</span></div>
-      <div class="ch"><span class="n">22</span><span class="t">Consent as Protocol</span></div>
       <div class="ch"><span class="n">11</span><span class="t">Storm Safety Order</span></div>
+      <div class="ch"><span class="n">12</span><span class="t">Atlas, Not a Leash</span></div>
+      <div class="ch"><span class="n">13</span><span class="t">Museum of Trust</span></div>
+      <div class="ch"><span class="n">14</span><span class="t">How Consent Becomes Law</span></div>
+      <div class="ch"><span class="n">15</span><span class="t">Privacy as Collateral</span></div>
+      <div class="ch"><span class="n">16</span><span class="t">The Alternative Arrives</span></div>
+      <div class="ch"><span class="n">17</span><span class="t">Turn: Replace or Die</span></div>
+      <div class="ch"><span class="n">18</span><span class="t">Cutover Math</span></div>
+      <div class="ch"><span class="n">19</span><span class="t">Casey's Truth</span></div>
+      <div class="ch"><span class="n">20</span><span class="t">The Bargain Shown</span></div>
+      <div class="ch"><span class="n">21</span><span class="t">The Corridor</span></div>
+      <div class="ch"><span class="n">22</span><span class="t">Consent as Protocol</span></div>
       <div class="ch"><span class="n">23</span><span class="t">The Cutover Holds</span></div>
     </div>
   </div>
