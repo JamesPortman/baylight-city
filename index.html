@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baylight After Image — A Novella by James Portman</title>
+<meta name="description" content="The city doesn't punish. It helps. A near-future surveillance thriller by James Portman — read the novella, hear the audiobook, watch the microdrama." />
+<meta property="og:title" content="Baylight After Image" />
+<meta property="og:description" content="The city doesn't punish. It helps." />
+<meta property="og:image" content="assets/cover.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;
+    --bg-2:#10151a;
+    --panel:#141a20;
+    --ink:#e8edf1;
+    --muted:#8a99a6;
+    --line:rgba(255,255,255,.09);
+    --green:#39f08a;
+    --green-dim:#1f7a4a;
+    --steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .green{color:var(--green)}
+
+  /* HUD verified chip */
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;
+    padding:6px 12px;background:rgba(57,240,138,.06);
+  }
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 10px var(--green);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* NAV */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.72);
+    border-bottom:1px solid var(--line);transition:background .3s}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;
+    font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  nav.links{display:flex;gap:30px}
+  nav.links a{font-size:13px;letter-spacing:.06em;color:var(--muted);transition:color .2s}
+  nav.links a:hover{color:var(--ink)}
+  .nav-cta{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;border:1px solid var(--green-dim);color:var(--green);
+    padding:9px 16px;border-radius:2px;transition:.2s}
+  .nav-cta:hover{background:var(--green);color:#04130a}
+  @media(max-width:780px){nav.links{display:none}}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:120px 0 80px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 500px at 78% 18%, rgba(57,240,138,.10), transparent 60%),
+      radial-gradient(700px 600px at 10% 90%, rgba(60,90,120,.18), transparent 60%),
+      linear-gradient(180deg,#0a0c0e 0%, #0c1014 60%, #0a0c0e 100%);
+    z-index:0}
+  .scanlines{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;
+    gap:60px;align-items:center}
+  .hero h1{font-family:'Archivo',sans-serif;font-weight:900;line-height:.95;
+    font-size:clamp(44px,7vw,86px);letter-spacing:.01em;text-transform:uppercase;margin:22px 0 10px}
+  .hero h1 .ai{color:var(--steel);display:block}
+  .tagline{font-family:'JetBrains Mono',monospace;font-size:clamp(15px,2vw,20px);
+    color:var(--ink);letter-spacing:.04em;margin-bottom:14px}
+  .tagline b{color:var(--green);font-weight:500}
+  .lede{color:var(--muted);font-size:17px;max-width:46ch;margin-bottom:30px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;font-size:13px;padding:15px 26px;border-radius:3px;
+    transition:.2s;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.25)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.45)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+  .cover-wrap{position:relative}
+  .cover-wrap img{width:100%;border-radius:6px;
+    box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06);
+    transform:perspective(1400px) rotateY(-7deg);transition:transform .5s}
+  .cover-wrap:hover img{transform:perspective(1400px) rotateY(-2deg) translateY(-6px)}
+  .cover-glow{position:absolute;inset:-10% -8%;z-index:-1;
+    background:radial-gradient(circle at 50% 40%,rgba(57,240,138,.18),transparent 65%);filter:blur(20px)}
+  @media(max-width:880px){.hero .wrap{grid-template-columns:1fr;gap:40px}
+    .cover-wrap{max-width:320px;margin:0 auto;order:-1}.cover-wrap img{transform:none}}
+
+  /* SECTION shells */
+  section{position:relative;padding:96px 0}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--green-dim)}
+  h2.sec{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(28px,4vw,44px);line-height:1.02;letter-spacing:.01em;margin-bottom:22px}
+  .sec-lead{color:var(--muted);font-size:17px;max-width:60ch}
+
+  /* SYNOPSIS */
+  .synopsis{background:
+      linear-gradient(180deg,#0a0c0e, #0c1116),
+      url('assets/city.jpg') center/cover no-repeat;
+    background-blend-mode:normal}
+  .synopsis::before{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,10,12,.86),rgba(8,10,12,.94))}
+  .synopsis .wrap{position:relative;z-index:2;max-width:820px}
+  .synopsis p{font-size:19px;color:#cdd7df;margin-bottom:20px}
+  .synopsis p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:64px;line-height:.7;float:left;padding:6px 14px 2px 0}
+  .pull{border-left:2px solid var(--green);padding:6px 0 6px 22px;margin:34px 0;
+    font-family:'JetBrains Mono',monospace;color:var(--steel);font-size:16px;letter-spacing:.02em}
+
+  /* PILLARS / formats */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:30px 26px;transition:.25s;position:relative;overflow:hidden}
+  .card:hover{border-color:var(--green-dim);transform:translateY(-4px)}
+  .card .num{font-family:'JetBrains Mono';font-size:12px;color:var(--green);letter-spacing:.2em}
+  .card h3{font-family:'Archivo';font-weight:800;text-transform:uppercase;font-size:22px;
+    margin:14px 0 10px;letter-spacing:.02em}
+  .card p{color:var(--muted);font-size:15px;margin-bottom:20px}
+  .card a.link{font-family:'JetBrains Mono';font-size:13px;color:var(--green);letter-spacing:.05em}
+  .card a.link:hover{text-decoration:underline}
+  @media(max-width:780px){.pillars{grid-template-columns:1fr}}
+
+  /* AUDIOBOOK */
+  .audio{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .audio .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+  .audio .scanner{border-radius:8px;border:1px solid var(--line);
+    box-shadow:0 0 50px rgba(57,240,138,.12)}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px}
+  .player .track{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .player .track .mono{font-size:12px;color:var(--green);letter-spacing:.12em}
+  .player h3{font-family:'Archivo';font-weight:700;font-size:21px;margin:4px 0 18px}
+  audio{width:100%;filter:invert(.92) hue-rotate(180deg) saturate(1.1)}
+  .player .note{font-size:13px;color:var(--muted);margin-top:14px}
+  @media(max-width:780px){.audio .grid{grid-template-columns:1fr;gap:30px}}
+
+  /* MICRODRAMA */
+  .video-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 30px 80px rgba(0,0,0,.6);margin-top:40px;background:#000;
+    aspect-ratio:16/9}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .ep-tag{display:inline-flex;gap:8px;align-items:center;margin-top:18px;color:var(--muted);
+    font-family:'JetBrains Mono';font-size:13px}
+
+  /* CHAPTERS */
+  .chapters{background:var(--bg-2);border-top:1px solid var(--line)}
+  .ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 50px;margin-top:36px}
+  .ch{display:flex;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .ch .n{font-family:'JetBrains Mono';font-size:12px;color:var(--green-dim);min-width:34px}
+  .ch .t{font-size:15px;color:#cdd7df}
+  @media(max-width:780px){.ch-grid{grid-template-columns:1fr}}
+
+  /* SIGNUP */
+  .signup{position:relative;overflow:hidden}
+  .signup::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(700px 380px at 50% 0%,rgba(57,240,138,.12),transparent 65%)}
+  .signup .wrap{position:relative;z-index:2;max-width:640px;text-align:center}
+  .signup form{display:flex;gap:12px;margin-top:30px}
+  .signup input{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    padding:15px 18px;border-radius:3px;font-family:'Inter';font-size:15px}
+  .signup input:focus{outline:none;border-color:var(--green-dim)}
+  .signup .msg{margin-top:16px;font-family:'JetBrains Mono';font-size:13px;color:var(--green);min-height:18px}
+  .consent{font-size:12px;color:var(--muted);margin-top:18px;font-family:'JetBrains Mono';letter-spacing:.03em}
+  @media(max-width:560px){.signup form{flex-direction:column}}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:50px 0 40px;background:var(--bg)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .brand{font-size:14px}
+  footer .meta{color:var(--muted);font-size:13px}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">BAYLIGHT <span>·</span> AFTER IMAGE</div>
+    <nav class="links">
+      <a href="#story">The City</a>
+      <a href="#formats">Experience</a>
+      <a href="#audio">Audiobook</a>
+      <a href="#watch">Microdrama</a>
+      <a href="#signup">Updates</a>
+    </nav>
+    <a href="#formats" class="nav-cta">Enter Baylight</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="scanlines"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="chip">Verified / Green</span>
+      <h1>Baylight<span class="ai">After Image</span></h1>
+      <p class="tagline">The city doesn't punish. <b>It helps.</b></p>
+      <p class="lede">A near-future thriller where safety is the surveillance, consent is the cage, and one woman learns to read the system the way it reads everyone else.</p>
+      <div class="cta-row">
+        <a href="#formats" class="btn btn-primary">Read the Novella</a>
+        <a href="#watch" class="btn btn-ghost">Watch Episode 1</a>
+      </div>
+    </div>
+    <div class="cover-wrap">
+      <div class="cover-glow"></div>
+      <img src="assets/cover.jpg" alt="Baylight After Image cover — James Portman" />
+    </div>
+  </div>
+</section>
+
+<!-- SYNOPSIS -->
+<section class="synopsis" id="story">
+  <div class="wrap">
+    <div class="eyebrow">The City Is Watching For Your Own Good</div>
+    <h2 class="sec">A System That Calls Itself Care</h2>
+    <p class="first">At 05:12 the city still pretends it's calm. Watch halos ping green in soft waves. Floor arrows shift in real time, herding bodies toward the least expensive corridor, the least risky corridor — the corridor that makes the model happy. This is Baylight: a system that never raises its voice, never makes an arrest, and never stops watching. It doesn't punish. It <em>helps</em>.</p>
+    <div class="pull">&gt; THRESHOLDS. QUEUES. COVERAGE CONES. EXITS.<br>&gt; She reads the world the way Baylight does.</div>
+    <p>Izzy moves through the underway under a borrowed name, her watch face dark, her movements clean. She knows what the green light costs — and what waits for anyone the city decides to quietly help a little too much. When consent becomes protocol and privacy becomes collateral, the only way out is to understand the machine better than the people who built it.</p>
+    <p><strong>Baylight After Image</strong> is a story about the soft architecture of control — told across three forms: a novella, an audiobook, and a microdrama series.</p>
+  </div>
+</section>
+
+<!-- FORMATS / PILLARS -->
+<section id="formats">
+  <div class="wrap">
+    <div class="eyebrow">Three Ways In</div>
+    <h2 class="sec">Read It. Hear It. Watch It.</h2>
+    <p class="sec-lead">The same world, built three ways. Start anywhere — they're designed to layer.</p>
+    <div class="pillars">
+      <div class="card reveal">
+        <div class="num">01 / NOVELLA</div>
+        <h3>The Book</h3>
+        <p>23 chapters, a prologue and epilogue. The full descent into Baylight — available as ebook and hardcover.</p>
+        <a href="#" class="link">Buy / Read &rarr;</a>
+      </div>
+      <div class="card reveal">
+        <div class="num">02 / AUDIOBOOK</div>
+        <h3>The Voice</h3>
+        <p>The novella narrated in full. Press play on Chapter 1 below — "Courtesy Reminder."</p>
+        <a href="#audio" class="link">Listen Now &rarr;</a>
+      </div>
+      <div class="card reveal">
+        <div class="num">03 / MICRODRAMA</div>
+        <h3>The Screen</h3>
+        <p>A vertical-cut series adapting the world episode by episode. Episode 1 is live.</p>
+        <a href="#watch" class="link">Watch Episode 1 &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIOBOOK -->
+<section class="audio" id="audio">
+  <div class="wrap">
+    <div class="grid">
+      <img class="scanner" src="assets/scanner.jpg" alt="Baylight scanner" />
+      <div>
+        <div class="eyebrow">Audiobook · Chapter 1</div>
+        <h2 class="sec">Courtesy Reminder</h2>
+        <p class="sec-lead" style="margin-bottom:24px">Hear the opening of Baylight After Image. The city's voice is calm. That's the point.</p>
+        <div class="player">
+          <div class="track"><span class="mono">▶ NOW PLAYING</span></div>
+          <h3>Chapter 1 — Courtesy Reminder</h3>
+          <audio controls preload="metadata">
+            <source src="assets/audiobook-ch1.mp3" type="audio/mpeg">
+            Your browser does not support audio playback.
+          </audio>
+          <p class="note">Full audiobook — additional chapters releasing alongside the series.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MICRODRAMA -->
+<section id="watch">
+  <div class="wrap">
+    <div class="eyebrow">Microdrama · Episode 1</div>
+    <h2 class="sec">Clean Signatures</h2>
+    <p class="sec-lead">The world of Baylight, on screen. Episode 1 of the microdrama series.</p>
+    <!-- Episode 1 embed. To change the video later, replace the ID after /embed/
+         with the new YouTube ID (the part after youtu.be/ or watch?v=). -->
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube.com/embed/ZNyquOK2YOA"
+        title="Baylight After Image — Episode 1: Clean Signatures"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+    <div class="ep-tag"><span class="green">●</span> EP.01 — "Clean Signatures" &nbsp;·&nbsp; EP.02 "Bones of the City" in production</div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="chapters">
+  <div class="wrap">
+    <div class="eyebrow">Inside the Novella</div>
+    <h2 class="sec">23 Chapters</h2>
+    <div class="ch-grid">
+      <div class="ch"><span class="n">00</span><span class="t">Prologue</span></div>
+      <div class="ch"><span class="n">12</span><span class="t">Atlas, Not a Leash</span></div>
+      <div class="ch"><span class="n">01</span><span class="t">Courtesy Reminder</span></div>
+      <div class="ch"><span class="n">13</span><span class="t">Museum of Trust</span></div>
+      <div class="ch"><span class="n">02</span><span class="t">Bones of the City</span></div>
+      <div class="ch"><span class="n">14</span><span class="t">How Consent Becomes Law</span></div>
+      <div class="ch"><span class="n">03</span><span class="t">The Vent</span></div>
+      <div class="ch"><span class="n">15</span><span class="t">Privacy as Collateral</span></div>
+      <div class="ch"><span class="n">04</span><span class="t">Under the Viaduct</span></div>
+      <div class="ch"><span class="n">16</span><span class="t">The Alternative Arrives</span></div>
+      <div class="ch"><span class="n">05</span><span class="t">Doors Are All You Ever Get</span></div>
+      <div class="ch"><span class="n">17</span><span class="t">Turn: Replace or Die</span></div>
+      <div class="ch"><span class="n">06</span><span class="t">Shielded Drawer</span></div>
+      <div class="ch"><span class="n">18</span><span class="t">Cutover Math</span></div>
+      <div class="ch"><span class="n">07</span><span class="t">Asset Removal Detected</span></div>
+      <div class="ch"><span class="n">19</span><span class="t">Casey's Truth</span></div>
+      <div class="ch"><span class="n">08</span><span class="t">Under the Order</span></div>
+      <div class="ch"><span class="n">20</span><span class="t">The Bargain Shown</span></div>
+      <div class="ch"><span class="n">09</span><span class="t">Safe Mode</span></div>
+      <div class="ch"><span class="n">21</span><span class="t">The Corridor</span></div>
+      <div class="ch"><span class="n">10</span><span class="t">Send</span></div>
+      <div class="ch"><span class="n">22</span><span class="t">Consent as Protocol</span></div>
+      <div class="ch"><span class="n">11</span><span class="t">Storm Safety Order</span></div>
+      <div class="ch"><span class="n">23</span><span class="t">The Cutover Holds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="signup" id="signup">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center">Stay In The Green</div>
+    <h2 class="sec">Get Notified</h2>
+    <p class="sec-lead" style="margin:0 auto">New chapters, new episodes, and launch news from the world of Baylight. No noise — only signal.</p>
+    <form id="signupForm" onsubmit="return handleSignup(event)">
+      <input type="email" id="email" placeholder="your@email.com" required aria-label="Email address" />
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <div class="msg" id="signupMsg"></div>
+    <p class="consent">⬡ CONSENT LOGGED · You can withdraw at any time. We don't herd corridors.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">BAYLIGHT <span class="green">·</span> AFTER IMAGE</div>
+    <div class="meta">A novella, audiobook &amp; microdrama by James Portman · © 2026 James Portman</div>
+  </div>
+</footer>
+
+<script>
+  // Nav background on scroll
+  const nav=document.querySelector('header.nav');
+  addEventListener('scroll',()=>{nav.style.background=scrollY>40?'rgba(10,12,14,.9)':'rgba(10,12,14,.72)';});
+
+  // Reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Mailing list (front-end demo — wire to your provider/Mailchimp/etc.)
+  function handleSignup(e){
+    e.preventDefault();
+    const email=document.getElementById('email').value;
+    const msg=document.getElementById('signupMsg');
+    msg.textContent='✓ VERIFIED / GREEN — '+email+' added to the watch list.';
+    document.getElementById('signupForm').reset();
+    return false;
+  }
+</script>
+</body>
+</html>
