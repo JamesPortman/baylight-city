@@ -379,13 +379,34 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.18});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // Mailing list (front-end demo — wire to your provider/Mailchimp/etc.)
-  function handleSignup(e){
+  // Mailing list — submits to Kit (form 9532000) via fetch, keeps user on page.
+  async function handleSignup(e){
     e.preventDefault();
+    const form=document.getElementById('signupForm');
+    const btn=form.querySelector('button');
     const email=document.getElementById('email').value;
     const msg=document.getElementById('signupMsg');
-    msg.textContent='✓ VERIFIED / GREEN — '+email+' added to the watch list.';
-    document.getElementById('signupForm').reset();
+    msg.style.color='var(--green)';
+    msg.textContent='> TRANSMITTING…';
+    btn.disabled=true;
+    try{
+      const data=new FormData();
+      data.append('email_address',email);
+      const res=await fetch('https://app.kit.com/forms/9532000/subscriptions',{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:data
+      });
+      if(!res.ok) throw new Error('bad status');
+      msg.style.color='var(--green)';
+      msg.textContent='✓ VERIFIED / GREEN — check your email to confirm.';
+      form.reset();
+    }catch(err){
+      msg.style.color='#f2643b';
+      msg.textContent='⚠ SIGNAL LOST — please try again in a moment.';
+    }finally{
+      btn.disabled=false;
+    }
     return false;
   }
 </script>
