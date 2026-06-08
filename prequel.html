@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Original Recording — A Baylight Prequel by James Portman</title>
+<meta name="description" content="Original Recording — a free prequel to Baylight After Image. A voice actress hears her own warmth turned into the city's instrument of compliance." />
+<meta property="og:title" content="Original Recording — A Baylight Prequel" />
+<meta property="og:description" content="They didn't steal a voice. They stole a way of caring." />
+<meta property="og:image" content="assets/cover.jpg" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,12..72,400;0,12..72,500;1,12..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--read:#d4dde4;--muted:#8a99a6;
+    --line:rgba(255,255,255,.09);--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
+  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .nav-back:hover{color:var(--green)}
+
+  .story{padding:130px 0 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06);margin-bottom:26px}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(38px,7vw,64px);line-height:.96;letter-spacing:.01em;margin-bottom:14px}
+  .byline{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:40px}
+  .byline b{color:var(--steel);font-weight:500}
+
+  .prose{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.78;color:var(--read)}
+  .prose p{margin-bottom:24px}
+  .prose p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:62px;line-height:.72;float:left;padding:8px 14px 0 0}
+  .prose em{font-style:italic;color:#e7eef3}
+  .divider{text-align:center;color:var(--green-dim);letter-spacing:.5em;font-size:14px;margin:34px 0;user-select:none}
+  /* the city's voice */
+  .voice{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);background:rgba(57,240,138,.05);border-left:2px solid var(--green-dim);
+    padding:14px 20px;margin:6px 0 24px;line-height:1.7}
+
+  .endnote{margin-top:20px;padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .endnote .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .endnote .label::before{content:"";width:24px;height:1px;background:var(--green-dim)}
+  .endnote p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.75;color:var(--read);margin-bottom:16px}
+  .endnote p:last-child{margin-bottom:0}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:48px 0 10px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    font-size:13px;padding:15px 26px;border-radius:3px;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.4)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;margin-top:50px}
+  footer .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .meta{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/" class="brand" aria-label="Baylight After Image — home">BAYLIGHT <span>·</span> AFTER IMAGE</a>
+    <a href="/" class="nav-back">&larr; Back to site</a>
+  </div>
+</header>
+
+<article class="story">
+  <div class="wrap">
+    <span class="chip">Prequel · Free to Read</span>
+    <h1>Original Recording</h1>
+    <p class="byline">A Baylight prequel &nbsp;·&nbsp; by <b>James Portman</b></p>
+
+    <div class="prose">
+      <p class="first">The contract was straightforward. Three days in a studio in Etobicoke, reading from a script that contained no complete sentences.</p>
+
+      <p>“We don’t need sentences,” the audio director told her. “We need phonemes. Vowel pairs. Consonant clusters. The system builds its own sentences from the parts.”</p>
+
+      <p>Ava Chen recorded 14,000 vocal fragments across those three days. Individual syllables, sustained vowels, breaths, hesitations, the shape of a swallow between words. They asked her to say <em>please</em> forty-two times — each with a different emotional weight. Pleading <em>please</em>. Bureaucratic <em>please</em>. The <em>please</em> of a nurse. The <em>please</em> of a parking ticket. The <em>please</em> you say to a child who is doing something dangerous and doesn’t know it yet.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>She was good at this. She’d done commercial voice work for years — in-flight safety announcements, pharmacy queue systems, elevator greetings. Her voice had what the industry called <em>warm authority</em>: the sound of someone who cared about you just enough to be trusted but not so much that it became personal.</p>
+
+      <p>They paid her for three days. She signed a release granting the Baylight Civic Trust perpetual, irrevocable, sublicensable rights to her vocal identity for use in public infrastructure. Her agent said it was standard. It was, in the sense that most surrenders are standard by the time they reach the paperwork.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>She heard herself for the first time at Union Node, eighteen months later.</p>
+
+      <p>She was passing through the transit gate — wristband green, no delay — when the speaker above the turnstile spoke in a voice she recognized the way you recognize your own face in a photograph taken by a stranger: familiar, but wrong. The angle was off. The lighting was someone else’s.</p>
+
+      <p class="voice">Thank you for your cooperation.</p>
+
+      <p>It was her mouth shape, her breath pattern, her particular way of softening the <em>th</em> in <em>thank</em>. But the sentence had been assembled from pieces she’d never spoken together. The system had cut her voice into syllables and reassembled them into language she hadn’t authored, in contexts she hadn’t imagined.</p>
+
+      <p>She stopped walking. The person behind her bumped her shoulder. The gate chimed a second time — the same voice, her voice — with a courtesy prompt:</p>
+
+      <p class="voice">Please keep moving. Delays affect everyone.</p>
+
+      <p>Ava kept moving.</p>
+
+      <p>Over the following weeks, she heard herself everywhere. At clinic check-ins: <em>Assistance is available.</em> At kiosk attestations: <em>A brief attestation reduces suffering.</em> At storm-order announcements, late at night, echoing through empty corridors: <em>This is a safety measure. Your patience is appreciated.</em></p>
+
+      <p>The system had given her voice a name. They called it <em>Mercy</em>.</p>
+
+      <p>She hadn’t been told.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>“It’s in the contract,” her agent said. “Clause 14.2. ‘Licensee may assign a public-facing identity to the synthesized vocal output.’ They didn’t need your approval.”</p>
+
+      <p>“They named it Mercy.”</p>
+
+      <p>“It’s a nice name.”</p>
+
+      <p>“It’s not my name. But it’s my voice telling people to cooperate while the city holds them at a gate. It’s my voice telling someone their tenancy is under review. Do you understand? They took my mouth and they’re using it to—”</p>
+
+      <p>“Ava.”</p>
+
+      <p>“—to make compliance sound like kindness.”</p>
+
+      <p>Her agent was quiet. Then: “Do you want me to look into buying it back?”</p>
+
+      <p>Ava laughed. The vocal buyback clause — she’d read it after the first time she heard herself at Union Node. The price was calculated as a function of total system exposure: every gate, kiosk, clinic, and corridor speaker that carried her phonemes. The number had seventeen digits.</p>
+
+      <p>“I couldn’t buy back a single syllable,” she said.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>She tried to stop listening. She wore earbuds on the transit. She avoided gates with speakers. She took longer routes through corridors that hadn’t been upgraded.</p>
+
+      <p>But Mercy was everywhere, because Mercy was infrastructure, and you can’t unhear your own voice the way you can’t unsee your own shadow. Each time a gate spoke, Ava’s body responded before her mind could intervene — a recognition reflex, deep and involuntary, like hearing your name called across a room.</p>
+
+      <p>The worst was the warmth. Mercy was warm because Ava was warm. The forty-two versions of <em>please</em> hadn’t been acting — they’d been drawn from the actual emotional range of a woman who genuinely wanted people to feel safe. The system hadn’t manufactured empathy. It had extracted it, sampled it, and deployed it at scale. Every soothing phrase Mercy spoke was technically real feeling, atomized and reassembled.</p>
+
+      <p>It was, Ava realized, the most honest theft she’d ever experienced. They hadn’t stolen a voice. They’d stolen a way of caring.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>A friend from the studio called her one evening. Jun, who’d worked the session as a sound engineer.</p>
+
+      <p>“You should know something,” Jun said. “They’ve started using adaptive modelling. Mercy isn’t just recombining your phonemes anymore. It’s generating new ones. Extrapolating from your vocal patterns to produce sounds you never made.”</p>
+
+      <p>“What kind of sounds?”</p>
+
+      <p>“Whispers. Sighs. The sound of someone swallowing before they say something difficult. The model learned your hesitation patterns and now it uses them to — I don’t know how to say this — to perform reluctance. Like it’s making a hard decision. Like it’s sorry.”</p>
+
+      <p>“It’s not sorry.”</p>
+
+      <p>“No. But it sounds like you when you’re sorry. And the compliance metrics went up nine per cent after they added it.”</p>
+
+      <p>Ava sat with the phone against her ear and listened to the building’s lobby gate greet a resident in a voice that was and wasn’t hers, a voice that carried her kindness like a weapon, that had learned her sorrow and wore it like a uniform.</p>
+
+      <p>“Jun,” she said. “What did my voice say today? At the gates?”</p>
+
+      <p>“I don’t know. What it always says. <em>Cooperation reduces suffering.</em> The usual.”</p>
+
+      <p>Ava closed her eyes. In the dark, she could feel the shape of the words in her own mouth — the <em>coo</em> of cooperation, the soft <em>shh</em> of reduces, the way suffering ended on a breath she recognized as her own, recorded three years ago in a studio in Etobicoke on a Tuesday afternoon when she’d thought she was just doing voice work.</p>
+
+      <p>She opened her mouth to say something — anything that was hers alone — and for a moment, just a moment, she wasn’t sure which of them would speak.</p>
+
+      <div class="divider">• • •</div>
+    </div>
+
+    <div class="endnote">
+      <div class="label">The Story Behind the Story</div>
+      <p>Every automated voice belongs to someone. The woman on your GPS, the man in your elevator, the voice that tells you your call is important — they were all recorded by a real person in a real studio, and then released into the world to say things they never chose to say.</p>
+      <p>I wanted to write about what happens when that voice becomes infrastructure — when it’s no longer a performance but a public utility, and the person it was taken from has to walk through a city that speaks in her stolen warmth. Ava’s tragedy isn’t that she lost her voice. It’s that the system uses it better than she ever could, and it learned how from her.</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--steel);letter-spacing:.02em">— James Portman</p>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.amazon.com/dp/B0H42YPXDM" class="btn btn-primary" target="_blank" rel="noopener">Read the Novella</a>
+      <a href="/#signup" class="btn btn-ghost">Get New Chapters</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <a href="/" class="brand">BAYLIGHT <span style="color:var(--green)">·</span> AFTER IMAGE</a>
+    <div class="meta">A novella, audiobook &amp; microdrama by James Portman · © 2026 James Portman</div>
+  </div>
+</footer>
+
+</body>
+</html>
