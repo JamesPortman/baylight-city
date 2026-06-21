@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Baylight — Analytics</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--muted:#8a99a6;--green:#39f08a;--green-dim:#1f7a4a;--line:rgba(255,255,255,.09)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5;padding:32px 22px 80px}
+  .wrap{max-width:1000px;margin:0 auto}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:26px}
+  h1 .g{color:var(--green)}
+  .sub{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  /* gate */
+  .gate{max-width:360px;margin:80px auto;text-align:center}
+  .gate input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:13px 16px;border-radius:4px;font-size:15px;margin:18px 0 12px}
+  .gate input:focus{outline:none;border-color:var(--green-dim)}
+  .btn{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:13px;
+    background:var(--green);color:#04130a;border:0;border-radius:4px;padding:13px 24px;cursor:pointer;width:100%}
+  .err{color:#f2643b;font-family:'JetBrains Mono';font-size:13px;margin-top:12px;min-height:18px}
+  .hidden{display:none}
+  /* dashboard */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:26px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .card .label{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+  .card .num{font-family:'Archivo';font-weight:900;font-size:34px;margin-top:6px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:18px}
+  .panel h2{font-family:'Archivo';font-weight:800;text-transform:uppercase;font-size:15px;letter-spacing:.04em;margin-bottom:16px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.two{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td{padding:8px 0;border-bottom:1px solid var(--line);color:#cdd7df}
+  td.n{text-align:right;font-family:'JetBrains Mono';color:var(--green);width:64px}
+  .muted{color:var(--muted)}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
+  .refresh{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:4px;padding:8px 14px;cursor:pointer}
+  .refresh:hover{border-color:var(--green-dim);color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="gate" class="gate">
+    <h1>BAYLIGHT <span class="g">·</span> ANALYTICS</h1>
+    <div class="sub">Administrator access</div>
+    <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password" />
+    <button class="btn" id="unlock">Unlock</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div id="dash" class="hidden">
+    <div class="topbar">
+      <div>
+        <h1>BAYLIGHT <span class="g">·</span> ANALYTICS</h1>
+        <div class="sub" id="updated"></div>
+      </div>
+      <button class="refresh" id="refresh">↻ Refresh</button>
+    </div>
+
+    <div class="cards">
+      <div class="card"><div class="label">Total Views</div><div class="num" id="m-total">—</div></div>
+      <div class="card"><div class="label">Last 30 Days</div><div class="num" id="m-30">—</div></div>
+      <div class="card"><div class="label">Mobile</div><div class="num" id="m-mob">—</div></div>
+      <div class="card"><div class="label">Desktop</div><div class="num" id="m-desk">—</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Views — last 30 days</h2>
+      <canvas id="chart" height="90"></canvas>
+    </div>
+
+    <div class="two">
+      <div class="panel"><h2>Top Pages</h2><table id="t-paths"></table></div>
+      <div class="panel"><h2>Referrers</h2><table id="t-ref"></table></div>
+    </div>
+    <div class="panel"><h2>Top Countries</h2><table id="t-country"></table></div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  let chart;
+
+  function rows(el, data, labelKey, fmtLabel){
+    el.innerHTML = data.length ? "" : '<tr><td class="muted">No data yet</td></tr>';
+    data.forEach(d => {
+      const tr = document.createElement("tr");
+      const label = fmtLabel ? fmtLabel(d[labelKey]) : d[labelKey];
+      tr.innerHTML = '<td>'+escapeHtml(String(label))+'</td><td class="n">'+d.c+'</td>';
+      el.appendChild(tr);
+    });
+  }
+  function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+  async function load(key){
+    const res = await fetch("/api/stats", { headers: { "x-admin-key": key } });
+    if (res.status === 401) { throw new Error("Wrong password."); }
+    if (!res.ok) { throw new Error("Couldn't load stats."); }
+    const d = await res.json();
+
+    $("gate").classList.add("hidden");
+    $("dash").classList.remove("hidden");
+    $("m-total").textContent = d.total.toLocaleString();
+    $("m-30").textContent = d.last30.toLocaleString();
+    const mob = (d.devices.find(x=>x.device==="mobile")||{}).c || 0;
+    const desk = (d.devices.find(x=>x.device==="desktop")||{}).c || 0;
+    $("m-mob").textContent = mob.toLocaleString();
+    $("m-desk").textContent = desk.toLocaleString();
+    $("updated").textContent = "Updated " + new Date().toLocaleString();
+
+    rows($("t-paths"), d.topPaths, "path");
+    rows($("t-ref"), d.topReferrers, "ref");
+    rows($("t-country"), d.topCountries, "country");
+
+    const labels = d.byDay.map(x=>x.day);
+    const counts = d.byDay.map(x=>x.c);
+    if (chart) chart.destroy();
+    chart = new Chart($("chart"), {
+      type: "line",
+      data: { labels, datasets: [{ data: counts, borderColor: "#39f08a", backgroundColor: "rgba(57,240,138,.12)", fill: true, tension: .3, pointRadius: 2 }] },
+      options: { plugins: { legend: { display: false } },
+        scales: { x: { ticks:{ color:"#8a99a6", maxTicksLimit:8 }, grid:{ color:"rgba(255,255,255,.06)" } },
+                  y: { beginAtZero:true, ticks:{ color:"#8a99a6", precision:0 }, grid:{ color:"rgba(255,255,255,.06)" } } } }
+    });
+  }
+
+  async function unlock(){
+    const key = $("pw").value.trim();
+    if(!key) return;
+    $("err").textContent = "Checking…";
+    try {
+      await load(key);
+      sessionStorage.setItem("bl_admin_key", key);
+    } catch(e){ $("err").textContent = e.message; }
+  }
+
+  $("unlock").addEventListener("click", unlock);
+  $("pw").addEventListener("keydown", e => { if(e.key==="Enter") unlock(); });
+  $("refresh").addEventListener("click", () => { const k = sessionStorage.getItem("bl_admin_key"); if(k) load(k).catch(()=>{}); });
+
+  // Auto-unlock if we already have the key this session
+  const saved = sessionStorage.getItem("bl_admin_key");
+  if (saved) load(saved).catch(()=>{ sessionStorage.removeItem("bl_admin_key"); });
+</script>
+</body>
+</html>

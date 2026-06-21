@@ -148,8 +148,8 @@
   /* AUDIOBOOK */
   .audio{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .audio .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
-  .audio .scanner{border-radius:8px;border:1px solid var(--line);
-    box-shadow:0 0 50px rgba(57,240,138,.12)}
+  .audio .scanner{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line);
+    box-shadow:0 0 50px rgba(57,240,138,.12);object-fit:cover}
   .player{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px}
   .player .track{display:flex;align-items:center;gap:10px;margin-bottom:6px}
   .player .track .mono{font-size:12px;color:var(--green);letter-spacing:.12em}
@@ -279,7 +279,9 @@
 <section class="audio" id="audio">
   <div class="wrap">
     <div class="grid">
-      <img class="scanner" src="assets/scanner.jpg" alt="Baylight scanner" />
+      <video class="scanner" autoplay muted loop playsinline preload="metadata" poster="assets/opening-credits-poster.jpg" aria-label="Baylight opening credits clip">
+        <source src="assets/opening-credits.mp4" type="video/mp4">
+      </video>
       <div>
         <div class="eyebrow">Audiobook</div>
         <h2 class="sec">Hear the Opening</h2>
@@ -449,6 +451,16 @@
     }
     return false;
   }
+</script>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
 </script>
 </body>
 </html>
