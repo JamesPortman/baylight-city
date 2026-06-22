@@ -17,15 +17,12 @@
   h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:26px}
   h1 .g{color:var(--green)}
   .sub{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
-  /* gate */
   .gate{max-width:360px;margin:80px auto;text-align:center}
   .gate input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:13px 16px;border-radius:4px;font-size:15px;margin:18px 0 12px}
   .gate input:focus{outline:none;border-color:var(--green-dim)}
-  .btn{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:13px;
-    background:var(--green);color:#04130a;border:0;border-radius:4px;padding:13px 24px;cursor:pointer;width:100%}
+  .btn{font-family:'Archivo';font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:13px;background:var(--green);color:#04130a;border:0;border-radius:4px;padding:13px 24px;cursor:pointer;width:100%}
   .err{color:#f2643b;font-family:'JetBrains Mono';font-size:13px;margin-top:12px;min-height:18px}
   .hidden{display:none}
-  /* dashboard */
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:26px 0}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
   .card .label{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
@@ -39,7 +36,10 @@
   td.n{text-align:right;font-family:'JetBrains Mono';color:var(--green);width:64px}
   .muted{color:var(--muted)}
   .topbar{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
-  .refresh{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:4px;padding:8px 14px;cursor:pointer}
+  .controls{display:flex;gap:10px;align-items:center}
+  select,.refresh{font-family:'JetBrains Mono';font-size:12px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 12px;cursor:pointer}
+  select:focus{outline:none;border-color:var(--green-dim)}
+  .refresh{color:var(--muted)}
   .refresh:hover{border-color:var(--green-dim);color:var(--green)}
 </style>
 </head>
@@ -60,18 +60,26 @@
         <h1>BAYLIGHT <span class="g">·</span> ANALYTICS</h1>
         <div class="sub" id="updated"></div>
       </div>
-      <button class="refresh" id="refresh">↻ Refresh</button>
+      <div class="controls">
+        <select id="range">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="0">All time</option>
+        </select>
+        <button class="refresh" id="refresh">↻</button>
+      </div>
     </div>
 
     <div class="cards">
-      <div class="card"><div class="label">Total Views</div><div class="num" id="m-total">—</div></div>
-      <div class="card"><div class="label">Last 30 Days</div><div class="num" id="m-30">—</div></div>
+      <div class="card"><div class="label">Unique Visitors</div><div class="num" id="m-unique">—</div></div>
+      <div class="card"><div class="label">Page Views</div><div class="num" id="m-views">—</div></div>
       <div class="card"><div class="label">Mobile</div><div class="num" id="m-mob">—</div></div>
       <div class="card"><div class="label">Desktop</div><div class="num" id="m-desk">—</div></div>
     </div>
 
     <div class="panel">
-      <h2>Views — last 30 days</h2>
+      <h2 id="chart-title">Visitors &amp; views</h2>
       <canvas id="chart" height="90"></canvas>
     </div>
 
@@ -89,27 +97,28 @@
   const $ = (id) => document.getElementById(id);
   let chart;
 
-  function rows(el, data, labelKey, fmtLabel){
+  function rows(el, data, labelKey){
     el.innerHTML = data.length ? "" : '<tr><td class="muted">No data yet</td></tr>';
     data.forEach(d => {
       const tr = document.createElement("tr");
-      const label = fmtLabel ? fmtLabel(d[labelKey]) : d[labelKey];
-      tr.innerHTML = '<td>'+escapeHtml(String(label))+'</td><td class="n">'+d.c+'</td>';
+      tr.innerHTML = '<td>'+escapeHtml(String(d[labelKey]))+'</td><td class="n">'+d.c+'</td>';
       el.appendChild(tr);
     });
   }
   function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
-  async function load(key){
-    const res = await fetch("/api/stats", { headers: { "x-admin-key": key } });
-    if (res.status === 401) { throw new Error("Wrong password."); }
-    if (!res.ok) { throw new Error("Couldn't load stats."); }
+  async function load(){
+    const key = sessionStorage.getItem("bl_admin_key");
+    const days = $("range") ? $("range").value : "30";
+    const res = await fetch("/api/stats?days=" + days, { headers: { "x-admin-key": key } });
+    if (res.status === 401) throw new Error("Wrong password.");
+    if (!res.ok) throw new Error("Couldn't load stats.");
     const d = await res.json();
 
     $("gate").classList.add("hidden");
     $("dash").classList.remove("hidden");
-    $("m-total").textContent = d.total.toLocaleString();
-    $("m-30").textContent = d.last30.toLocaleString();
+    $("m-unique").textContent = d.unique.toLocaleString();
+    $("m-views").textContent = d.views.toLocaleString();
     const mob = (d.devices.find(x=>x.device==="mobile")||{}).c || 0;
     const desk = (d.devices.find(x=>x.device==="desktop")||{}).c || 0;
     $("m-mob").textContent = mob.toLocaleString();
@@ -121,34 +130,33 @@
     rows($("t-country"), d.topCountries, "country");
 
     const labels = d.byDay.map(x=>x.day);
-    const counts = d.byDay.map(x=>x.c);
     if (chart) chart.destroy();
     chart = new Chart($("chart"), {
       type: "line",
-      data: { labels, datasets: [{ data: counts, borderColor: "#39f08a", backgroundColor: "rgba(57,240,138,.12)", fill: true, tension: .3, pointRadius: 2 }] },
-      options: { plugins: { legend: { display: false } },
-        scales: { x: { ticks:{ color:"#8a99a6", maxTicksLimit:8 }, grid:{ color:"rgba(255,255,255,.06)" } },
-                  y: { beginAtZero:true, ticks:{ color:"#8a99a6", precision:0 }, grid:{ color:"rgba(255,255,255,.06)" } } } }
+      data: { labels, datasets: [
+        { label:"Visitors", data: d.byDay.map(x=>x.visitors), borderColor:"#39f08a", backgroundColor:"rgba(57,240,138,.14)", fill:true, tension:.3, pointRadius:2 },
+        { label:"Views", data: d.byDay.map(x=>x.views), borderColor:"#9fb3c0", backgroundColor:"transparent", borderDash:[4,4], fill:false, tension:.3, pointRadius:0 }
+      ]},
+      options: { plugins:{ legend:{ labels:{ color:"#8a99a6", boxWidth:12 } } },
+        scales:{ x:{ ticks:{ color:"#8a99a6", maxTicksLimit:8 }, grid:{ color:"rgba(255,255,255,.06)" } },
+                 y:{ beginAtZero:true, ticks:{ color:"#8a99a6", precision:0 }, grid:{ color:"rgba(255,255,255,.06)" } } } }
     });
   }
 
   async function unlock(){
     const key = $("pw").value.trim();
     if(!key) return;
+    sessionStorage.setItem("bl_admin_key", key);
     $("err").textContent = "Checking…";
-    try {
-      await load(key);
-      sessionStorage.setItem("bl_admin_key", key);
-    } catch(e){ $("err").textContent = e.message; }
+    try { await load(); } catch(e){ $("err").textContent = e.message; sessionStorage.removeItem("bl_admin_key"); }
   }
 
   $("unlock").addEventListener("click", unlock);
   $("pw").addEventListener("keydown", e => { if(e.key==="Enter") unlock(); });
-  $("refresh").addEventListener("click", () => { const k = sessionStorage.getItem("bl_admin_key"); if(k) load(k).catch(()=>{}); });
+  $("refresh").addEventListener("click", () => load().catch(()=>{}));
+  $("range").addEventListener("change", () => load().catch(()=>{}));
 
-  // Auto-unlock if we already have the key this session
-  const saved = sessionStorage.getItem("bl_admin_key");
-  if (saved) load(saved).catch(()=>{ sessionStorage.removeItem("bl_admin_key"); });
+  if (sessionStorage.getItem("bl_admin_key")) load().catch(()=>{ sessionStorage.removeItem("bl_admin_key"); });
 </script>
 </body>
 </html>
