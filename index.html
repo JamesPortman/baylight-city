@@ -257,7 +257,7 @@
         <div class="num">01 / NOVELLA</div>
         <h3>The Book</h3>
         <p>23 chapters, a prologue and epilogue. The full descent into Baylight — available as ebook and hardcover.</p>
-        <a href="https://www.amazon.com/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="link js-amazon" target="_blank" rel="noopener">Buy / Read &rarr;</a>
+        <a href="https://www.amazon.ca/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="link js-amazon" target="_blank" rel="noopener">Buy / Read &rarr;</a>
       </div>
       <div class="card reveal">
         <div class="num">02 / AUDIOBOOK</div>
@@ -406,7 +406,7 @@
       FR:'fr',BE:'fr',IT:'it',ES:'es',NL:'nl',PL:'pl',SE:'se',AU:'com.au',NZ:'com.au',
       JP:'co.jp',IN:'in',MX:'com.mx',BR:'com.br',SG:'sg',AE:'ae',SA:'sa',TR:'com.tr',EG:'eg'};
     const langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en-US'];
-    let dom='com';
+    let dom='ca';
     for(const l of langs){const m=/[-_]([A-Za-z]{2})$/.exec(l||'');if(m&&map[m[1].toUpperCase()]){dom=map[m[1].toUpperCase()];break;}}
     document.querySelectorAll('a.js-amazon').forEach(a=>{
       a.href='https://www.amazon.'+dom+'/dp/'+a.getAttribute('data-asin');
