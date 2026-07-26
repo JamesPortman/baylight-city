@@ -448,12 +448,24 @@
     const btn=form.querySelector('button');
     const email=document.getElementById('email').value;
     const msg=document.getElementById('signupMsg');
+    // Language the visitor is browsing in (set by i18n.js).
+    let lang='en';
+    try{ lang=(localStorage.getItem('bl_lang')||document.documentElement.lang||'en').slice(0,2); }catch(_){}
+    const MSG={
+      en:{t:'> TRANSMITTING…', ok:'✓ VERIFIED / GREEN — check your email to confirm.', err:'⚠ SIGNAL LOST — please try again in a moment.'},
+      pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — confira seu e-mail para confirmar.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'}
+    };
+    const m=MSG[lang]||MSG.en;
+    const langName={en:'English', pt:'Português'}[lang]||lang;
     msg.style.color='var(--green)';
-    msg.textContent='> TRANSMITTING…';
+    msg.textContent=m.t;
     btn.disabled=true;
     try{
       const data=new FormData();
       data.append('email_address',email);
+      // Records the sign-up language on the subscriber in Kit (create a
+      // "language" custom field in Kit so this value is stored).
+      data.append('fields[language]',langName);
       const res=await fetch('https://app.kit.com/forms/9532000/subscriptions',{
         method:'POST',
         headers:{'Accept':'application/json'},
@@ -461,11 +473,11 @@
       });
       if(!res.ok) throw new Error('bad status');
       msg.style.color='var(--green)';
-      msg.textContent='✓ VERIFIED / GREEN — check your email to confirm.';
+      msg.textContent=m.ok;
       form.reset();
     }catch(err){
       msg.style.color='#f2643b';
-      msg.textContent='⚠ SIGNAL LOST — please try again in a moment.';
+      msg.textContent=m.err;
     }finally{
       btn.disabled=false;
     }
@@ -482,5 +494,6 @@
     else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
   }catch(e){}})();
 </script>
+<script src="/i18n.js" defer></script>
 </body>
 </html>
