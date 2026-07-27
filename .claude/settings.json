@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "honeycomb-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "honeycombio/agent-skill"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "honeycomb@honeycomb-plugins": true
+  }
+}
