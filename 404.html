@@ -43,6 +43,11 @@
 </head>
 <body>
 <div class="scan"></div>
+<header style="position:fixed;top:0;left:0;right:0;z-index:5;padding:16px 22px">
+  <div class="wrap" style="max-width:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;text-align:left">
+    <a href="/" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--steel);text-decoration:none">BAYLIGHT · AFTER IMAGE</a>
+  </div>
+</header>
 <div class="wrap">
   <span class="chip">Signal Lost / 404</span>
   <h1>404</h1>
@@ -51,5 +56,16 @@
   <p class="mono">&gt; THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.</p>
   <a class="btn" href="/">Back to Baylight</a>
 </div>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
+</script>
+<script src="/i18n.js" defer></script>
 </body>
 </html>

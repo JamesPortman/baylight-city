@@ -165,5 +165,10 @@
   "__hrefs__": {
     "assets/baylight-prologue.pdf": "assets/baylight-prologo-pt.pdf",
     "assets/baylight-chapter-1.pdf": "assets/baylight-capitulo-1-pt.pdf"
-  }
+  },
+  "Signal Lost / 404": "Sinal Perdido / 404",
+  "This Corridor Doesn't Exist": "Este Corredor Não Existe",
+  "The page you're looking for isn't on the grid. Baylight has no record of it — and for once, that's fine.": "A página que você procura não está na grade. A Baylight não tem registro dela — e, por uma vez, tudo bem.",
+  "> THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.": "> LIMIAR NÃO ENCONTRADO. RETORNANDO A UMA SAÍDA CONHECIDA.",
+  "Back to Baylight": "Voltar para a Baylight"
 }
