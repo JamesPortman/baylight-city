@@ -453,10 +453,13 @@
     try{ lang=(localStorage.getItem('bl_lang')||document.documentElement.lang||'en').slice(0,2); }catch(_){}
     const MSG={
       en:{t:'> TRANSMITTING…', ok:'✓ VERIFIED / GREEN — check your email to confirm.', err:'⚠ SIGNAL LOST — please try again in a moment.'},
-      pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — confira seu e-mail para confirmar.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'}
+      pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — confira seu e-mail para confirmar.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'},
+      es:{t:'> TRANSMITIENDO…', ok:'✓ VERIFICADO / VERDE — revisa tu correo para confirmar.', err:'⚠ SEÑAL PERDIDA — inténtalo de nuevo en un momento.'},
+      fr:{t:'> TRANSMISSION…', ok:'✓ VÉRIFIÉ / VERT — vérifiez votre e-mail pour confirmer.', err:'⚠ SIGNAL PERDU — réessayez dans un instant.'},
+      zh:{t:'> 传输中…', ok:'✓ 已验证 / 绿色 —— 请查收邮件以确认。', err:'⚠ 信号丢失 —— 请稍后再试。'}
     };
     const m=MSG[lang]||MSG.en;
-    const langName={en:'English', pt:'Português'}[lang]||lang;
+    const langName={en:'English', pt:'Português', es:'Español', fr:'Français', zh:'中文'}[lang]||lang;
     msg.style.color='var(--green)';
     msg.textContent=m.t;
     btn.disabled=true;

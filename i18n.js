@@ -5,9 +5,10 @@
   // ===== Add languages here =====
   var LANGS = [
     { code: "en", label: "EN" },
-    { code: "pt", label: "PT" }
-    // , { code: "es", label: "ES" }
-    // , { code: "fr", label: "FR" }
+    { code: "pt", label: "PT" },
+    { code: "es", label: "ES" },
+    { code: "fr", label: "FR" },
+    { code: "zh", label: "中文" }
   ];
   var DEFAULT = "en";
   var STORE = "bl_lang";
@@ -76,6 +77,7 @@
   }
 
   function pick() {
+    try { var u = new URLSearchParams(location.search).get("lang"); if (u) { u = u.toLowerCase().slice(0, 2); if (has(u)) return u; } } catch (e) {}
     try { var s = localStorage.getItem(STORE); if (s && has(s)) return s; } catch (e) {}
     var navs = navigator.languages || [navigator.language || "en"];
     for (var i = 0; i < navs.length; i++) {
