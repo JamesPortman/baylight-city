@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gravação original — uma prequela de Baylight por James Portman</title>
+<meta name="description" content="Gravação original — uma prequela gratuita de Baylight After Image. Uma dubladora ouve o próprio acolhimento transformado no instrumento de obediência da cidade." />
+<meta property="og:title" content="Gravação original — uma prequela de Baylight" />
+<meta property="og:description" content="Não roubaram uma voz. Roubaram um modo de cuidar." />
+<meta property="og:image" content="/assets/cover.jpg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<!-- Canonical + language alternates (i18n.js updates canonical to the active language at runtime). -->
+<link rel="canonical" href="https://baylight.city/pt/prequel/" />
+<link rel="alternate" hreflang="en" href="https://baylight.city/prequel.html" />
+<link rel="alternate" hreflang="pt" href="https://baylight.city/pt/prequel/" />
+<link rel="alternate" hreflang="es" href="https://baylight.city/es/prequel/" />
+<link rel="alternate" hreflang="fr" href="https://baylight.city/fr/prequel/" />
+<link rel="alternate" hreflang="zh" href="https://baylight.city/zh/prequel/" />
+<link rel="alternate" hreflang="fa" href="https://baylight.city/fa/prequel/" />
+<link rel="alternate" hreflang="x-default" href="https://baylight.city/prequel.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,12..72,400;0,12..72,500;1,12..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--read:#d4dde4;--muted:#8a99a6;
+    --line:rgba(255,255,255,.09);--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
+  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .nav-back:hover{color:var(--green)}
+
+  .story{padding:130px 0 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06);margin-bottom:26px}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(38px,7vw,64px);line-height:.96;letter-spacing:.01em;margin-bottom:14px}
+  .byline{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:40px}
+  .byline b{color:var(--steel);font-weight:500}
+
+  .prose{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.78;color:var(--read)}
+  .prose p{margin-bottom:24px}
+  .prose p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:62px;line-height:.72;float:left;padding:8px 14px 0 0}
+  .prose em{font-style:italic;color:#e7eef3}
+  .divider{text-align:center;color:var(--green-dim);letter-spacing:.5em;font-size:14px;margin:34px 0;user-select:none}
+  /* the city's voice */
+  .voice{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);background:rgba(57,240,138,.05);border-left:2px solid var(--green-dim);
+    padding:14px 20px;margin:6px 0 24px;line-height:1.7}
+  .fig{margin:38px 0}
+  .fig img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+  .fig figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.05em;
+    color:var(--muted);margin-top:12px;text-align:center}
+  .listen{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 44px}
+  .listen .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .listen audio{width:100%;filter:invert(.92) hue-rotate(180deg) saturate(1.1)}
+  .listen .note{font-size:13px;color:var(--muted);margin-top:10px;font-family:'Inter',sans-serif}
+
+  .endnote{margin-top:20px;padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .endnote .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .endnote .label::before{content:"";width:24px;height:1px;background:var(--green-dim)}
+  .endnote p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.75;color:var(--read);margin-bottom:16px}
+  .endnote p:last-child{margin-bottom:0}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:48px 0 10px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    font-size:13px;padding:15px 26px;border-radius:3px;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.4)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;margin-top:50px}
+  footer .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .meta{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/pt/" class="brand" aria-label="Baylight After Image — home">BAYLIGHT <span>·</span> AFTER IMAGE</a>
+    <a href="/pt/" class="nav-back">← Voltar ao site</a>
+  </div>
+</header>
+
+<article class="story">
+  <div class="wrap">
+    <span class="chip">Prequela</span>
+    <h1>Gravação Original</h1>
+    <p class="byline">Uma prequela de Baylight · por <b>James Portman</b></p>
+
+    <div class="listen">
+      <div class="label">▶ Ouça a prequela</div>
+      <audio controls preload="metadata">
+        <source src="/assets/prequel-original-recording.mp3" type="audio/mpeg">
+        Seu navegador não suporta a reprodução de áudio.
+      </audio>
+      <p class="note">Audiolivro narrado · cerca de 8 minutos. Prefere ler? A história completa está abaixo.</p>
+    </div>
+
+    <div class="prose">
+      <p class="first">O contrato era direto. Três dias num estúdio em Etobicoke, lendo um roteiro que não continha frases completas.</p>
+
+      <p>“Não precisamos de frases”, disse a ela o diretor de áudio. “Precisamos de fonemas. Pares de vogais. Grupos de consoantes. O sistema monta as próprias frases a partir das partes.”</p>
+
+      <p>Ava Chen gravou 14.000 fragmentos vocais ao longo daqueles três dias. Sílabas isoladas, vogais sustentadas, respirações, hesitações, o formato de um engolir entre palavras. Pediram que ela dissesse <em>por favor</em> quarenta e duas vezes — cada uma com um peso emocional diferente. Suplicante <em>por favor</em>. Burocrático <em>por favor</em>. O <em>por favor</em> de uma enfermeira. O <em>por favor</em> de uma multa de estacionamento. O <em>por favor</em> que você diz a uma criança fazendo algo perigoso e que ainda não sabe disso.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Ela era boa nisso. Fizera trabalho de voz comercial durante anos — anúncios de segurança de voo, sistemas de fila de farmácia, saudações de elevador. Sua voz tinha o que a indústria chamava de <em>autoridade acolhedora</em>: o som de alguém que se importava com você o bastante para ser confiável, mas não tanto a ponto de ficar pessoal.</p>
+
+      <p>Pagaram por três dias. Ela assinou um termo concedendo ao Fundo Cívico Baylight direitos perpétuos, irrevogáveis e sublicenciáveis sobre sua identidade vocal para uso em infraestrutura pública. Seu agente disse que era padrão. E era, no sentido de que a maioria das rendições já é padrão quando chega à papelada.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Ela se ouviu pela primeira vez no Union Node, dezoito meses depois.</p>
+
+      <p>Ela atravessava a catraca de trânsito — pulseira verde, sem atraso — quando o alto-falante acima da roleta falou numa voz que ela reconheceu do jeito que se reconhece o próprio rosto numa foto tirada por um estranho: familiar, mas errada. O ângulo estava torto. A iluminação era de outra pessoa.</p>
+
+      <figure class="fig">
+        <img src="/assets/prequel-union-node.jpg" alt="Ava Chen stands still at a Union Node transit gate as commuters blur past, beneath a sign reading THANK YOU FOR YOUR COOPERATION." />
+        <figcaption>Union Node — a manhã em que ela se ouviu pela primeira vez.</figcaption>
+      </figure>
+
+      <p class="voice">Obrigado pela sua cooperação.</p>
+
+      <p>Era o formato da boca dela, o padrão da respiração, seu jeito particular de suavizar o <em>th</em> em <em>thank</em>. Mas a frase fora montada com pedaços que ela nunca dissera juntos. O sistema cortara sua voz em sílabas e as remontara numa linguagem que ela não escrevera, em contextos que ela não imaginara.</p>
+
+      <p>Ela parou de andar. A pessoa atrás dela esbarrou em seu ombro. A catraca tocou uma segunda vez — a mesma voz, a voz dela — com um aviso de cortesia:</p>
+
+      <p class="voice">Por favor, continue andando. Atrasos afetam todos.</p>
+
+      <p>Ava continuou andando.</p>
+
+      <p>Nas semanas seguintes, ela se ouviu em todo lugar. Nos check-ins de clínica: <em>Há assistência disponível.</em> Nas atestações de quiosque: <em>Uma breve atestação reduz o sofrimento.</em> Nos anúncios de ordem de tempestade, tarde da noite, ecoando por corredores vazios: <em>Esta é uma medida de segurança. Agradecemos a sua paciência.</em></p>
+
+      <p>O sistema dera um nome à voz dela. Chamaram-na de <em>Misericórdia</em>.</p>
+
+      <p>Não haviam avisado a ela.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>“Está no contrato”, disse o agente dela. “Cláusula 14.2. ‘O licenciado pode atribuir uma identidade pública à saída vocal sintetizada.’ Não precisavam da sua aprovação.”</p>
+
+      <p>“Deram a ela o nome de Misericórdia.”</p>
+
+      <p>“É um nome bonito.”</p>
+
+      <p>“Não é o meu nome. Mas é a minha voz mandando as pessoas cooperarem enquanto a cidade as retém numa catraca. É a minha voz dizendo a alguém que a locação dele está sob revisão. Você entende? Pegaram a minha boca e estão usando para—”</p>
+
+      <p>“Ava.”</p>
+
+      <p>“—fazer a obediência soar como gentileza.”</p>
+
+      <p>O agente ficou em silêncio. Depois: “Quer que eu veja como comprar de volta?”</p>
+
+      <p>Ava riu. A cláusula de recompra vocal — ela a lera depois da primeira vez em que se ouviu no Union Node. O preço era calculado em função da exposição total no sistema: cada catraca, quiosque, clínica e alto-falante de corredor que carregava seus fonemas. O número tinha dezessete dígitos.</p>
+
+      <p>“Eu não conseguiria recomprar uma única sílaba”, disse ela.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Ela tentou parar de ouvir. Usava fones no transporte. Evitava catracas com alto-falantes. Fazia trajetos mais longos por corredores que ainda não tinham sido atualizados.</p>
+
+      <p>Mas a Misericórdia estava em todo lugar, porque a Misericórdia era infraestrutura, e não dá para desouvir a própria voz do mesmo jeito que não dá para desver a própria sombra. Cada vez que uma catraca falava, o corpo de Ava reagia antes que a mente pudesse intervir — um reflexo de reconhecimento, profundo e involuntário, como ouvir seu nome chamado do outro lado de uma sala.</p>
+
+      <p>O pior era o calor. A Misericórdia era acolhedora porque Ava era acolhedora. As quarenta e duas versões de <em>por favor</em> não eram atuação — foram extraídas da real amplitude emocional de uma mulher que genuinamente queria que as pessoas se sentissem seguras. O sistema não fabricou empatia. Ele a extraiu, amostrou e aplicou em escala. Cada frase reconfortante que a Misericórdia dizia era, tecnicamente, sentimento real, atomizado e remontado.</p>
+
+      <p>Foi, percebeu Ava, o roubo mais honesto que ela já vivera. Não roubaram uma voz. Roubaram um jeito de se importar.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Um amigo do estúdio ligou para ela uma noite. Jun, que trabalhara na sessão como engenheiro de som.</p>
+
+      <p>“Você precisa saber de uma coisa”, disse Jun. “Começaram a usar modelagem adaptativa. A Misericórdia não está só recombinando os seus fonemas. Está gerando novos. Extrapolando dos seus padrões vocais para produzir sons que você nunca fez.”</p>
+
+      <p>“Que tipo de sons?”</p>
+
+      <p>“Sussurros. Suspiros. O som de alguém engolindo antes de dizer algo difícil. O modelo aprendeu os seus padrões de hesitação e agora os usa para — não sei como dizer isso — encenar relutância. Como se estivesse tomando uma decisão difícil. Como se estivesse arrependido.”</p>
+
+      <p>“Ele não está arrependido.”</p>
+
+      <p>“Não. Mas soa como você quando está arrependida. E as métricas de obediência subiram nove por cento depois que adicionaram isso.”</p>
+
+      <p>Ava ficou com o telefone contra o ouvido e escutou a catraca do saguão do prédio saudar um morador numa voz que era e não era dela, uma voz que carregava a bondade dela como uma arma, que aprendera a sua tristeza e a vestia como um uniforme.</p>
+
+      <p>“Jun”, disse ela. “O que a minha voz disse hoje? Nas catracas?”</p>
+
+      <p>“Não sei. O que ela sempre diz. <em>A cooperação reduz o sofrimento.</em> O de sempre.”</p>
+
+      <p>Ava fechou os olhos. No escuro, conseguia sentir o formato das palavras na própria boca — o <em>coo</em> de cooperação, o suave <em>shh</em> de reduz, o jeito como o sofrimento terminava num sopro que ela reconhecia como seu, gravado três anos antes num estúdio em Etobicoke, numa tarde de terça-feira, quando ela achava que estava só fazendo trabalho de voz.</p>
+
+      <p>Ela abriu a boca para dizer algo — qualquer coisa que fosse só dela — e por um instante, apenas um instante, não teve certeza de qual das duas falaria.</p>
+
+      <div class="divider">• • •</div>
+    </div>
+
+    <div class="endnote">
+      <div class="label">A História Por Trás da História</div>
+      <p>Toda voz automatizada pertence a alguém. A mulher do seu GPS, o homem do seu elevador, a voz que diz que a sua ligação é importante — todos foram gravados por uma pessoa real, num estúdio real, e então soltos no mundo para dizer coisas que nunca escolheram dizer.</p>
+      <p>Eu quis escrever sobre o que acontece quando essa voz vira infraestrutura — quando deixa de ser uma performance e vira um serviço público, e a pessoa de quem ela foi tirada precisa atravessar uma cidade que fala com o calor roubado dela. A tragédia de Ava não é ter perdido a voz. É que o sistema a usa melhor do que ela jamais conseguiria, e aprendeu isso com ela.</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--steel);letter-spacing:.02em">— James Portman</p>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.amazon.ca/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="btn btn-primary js-amazon" target="_blank" rel="noopener">Ler o Romance</a>
+      <a href="/pt/" class="btn btn-ghost">Receber Novos Capítulos</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <a href="/pt/" class="brand">BAYLIGHT <span style="color:var(--green)">·</span> AFTER IMAGE</a>
+    <div class="meta">Um romance, audiolivro e microdrama de James Portman · © 2026 James Portman</div>
+  </div>
+</footer>
+
+<script>
+  // Localize Amazon links to the visitor's browser region (falls back to .com)
+  (function(){
+    const map={US:'com',CA:'ca',GB:'co.uk',UK:'co.uk',IE:'co.uk',DE:'de',AT:'de',CH:'de',
+      FR:'fr',BE:'fr',IT:'it',ES:'es',NL:'nl',PL:'pl',SE:'se',AU:'com.au',NZ:'com.au',
+      JP:'co.jp',IN:'in',MX:'com.mx',BR:'com.br',SG:'sg',AE:'ae',SA:'sa',TR:'com.tr',EG:'eg'};
+    const langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en-US'];
+    let dom='ca';
+    for(const l of langs){const m=/[-_]([A-Za-z]{2})$/.exec(l||'');if(m&&map[m[1].toUpperCase()]){dom=map[m[1].toUpperCase()];break;}}
+    document.querySelectorAll('a.js-amazon').forEach(a=>{
+      a.href='https://www.amazon.'+dom+'/dp/'+a.getAttribute('data-asin');
+    });
+  })();
+</script>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
+</script>
+<script src="/i18n.js" defer></script>
+</body>
+</html>

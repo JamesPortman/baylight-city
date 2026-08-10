@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>原始录音 — Baylight 前传，詹姆斯·波特曼著</title>
+<meta name="description" content="原始录音 — Baylight After Image 的免费前传。一位配音女演员听见自己的温柔被改造成城市的顺从工具。" />
+<meta property="og:title" content="原始录音 — 一部 Baylight 前传" />
+<meta property="og:description" content="他们偷走的不是一个声音，而是一种关怀的方式。" />
+<meta property="og:image" content="/assets/cover.jpg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<!-- Canonical + language alternates (i18n.js updates canonical to the active language at runtime). -->
+<link rel="canonical" href="https://baylight.city/zh/prequel/" />
+<link rel="alternate" hreflang="en" href="https://baylight.city/prequel.html" />
+<link rel="alternate" hreflang="pt" href="https://baylight.city/pt/prequel/" />
+<link rel="alternate" hreflang="es" href="https://baylight.city/es/prequel/" />
+<link rel="alternate" hreflang="fr" href="https://baylight.city/fr/prequel/" />
+<link rel="alternate" hreflang="zh" href="https://baylight.city/zh/prequel/" />
+<link rel="alternate" hreflang="fa" href="https://baylight.city/fa/prequel/" />
+<link rel="alternate" hreflang="x-default" href="https://baylight.city/prequel.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,12..72,400;0,12..72,500;1,12..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--read:#d4dde4;--muted:#8a99a6;
+    --line:rgba(255,255,255,.09);--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
+  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .nav-back:hover{color:var(--green)}
+
+  .story{padding:130px 0 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06);margin-bottom:26px}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(38px,7vw,64px);line-height:.96;letter-spacing:.01em;margin-bottom:14px}
+  .byline{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:40px}
+  .byline b{color:var(--steel);font-weight:500}
+
+  .prose{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.78;color:var(--read)}
+  .prose p{margin-bottom:24px}
+  .prose p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:62px;line-height:.72;float:left;padding:8px 14px 0 0}
+  .prose em{font-style:italic;color:#e7eef3}
+  .divider{text-align:center;color:var(--green-dim);letter-spacing:.5em;font-size:14px;margin:34px 0;user-select:none}
+  /* the city's voice */
+  .voice{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);background:rgba(57,240,138,.05);border-left:2px solid var(--green-dim);
+    padding:14px 20px;margin:6px 0 24px;line-height:1.7}
+  .fig{margin:38px 0}
+  .fig img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+  .fig figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.05em;
+    color:var(--muted);margin-top:12px;text-align:center}
+  .listen{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 44px}
+  .listen .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .listen audio{width:100%;filter:invert(.92) hue-rotate(180deg) saturate(1.1)}
+  .listen .note{font-size:13px;color:var(--muted);margin-top:10px;font-family:'Inter',sans-serif}
+
+  .endnote{margin-top:20px;padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .endnote .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .endnote .label::before{content:"";width:24px;height:1px;background:var(--green-dim)}
+  .endnote p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.75;color:var(--read);margin-bottom:16px}
+  .endnote p:last-child{margin-bottom:0}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:48px 0 10px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    font-size:13px;padding:15px 26px;border-radius:3px;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.4)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;margin-top:50px}
+  footer .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .meta{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/zh/" class="brand" aria-label="Baylight After Image — home">BAYLIGHT <span>·</span> AFTER IMAGE</a>
+    <a href="/zh/" class="nav-back">← 返回网站</a>
+  </div>
+</header>
+
+<article class="story">
+  <div class="wrap">
+    <span class="chip">前传</span>
+    <h1>原始录音</h1>
+    <p class="byline">一部 Baylight 前传 · 作者 <b>James Portman</b></p>
+
+    <div class="listen">
+      <div class="label">▶ 收听前传</div>
+      <audio controls preload="metadata">
+        <source src="/assets/prequel-original-recording.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+      </audio>
+      <p class="note">有声书朗读 · 约 8 分钟。更想阅读？完整故事在下方。</p>
+    </div>
+
+    <div class="prose">
+      <p class="first">合同很简单明了。在艾托比科的一间录音棚里待三天，照着一份没有一句完整句子的脚本朗读。</p>
+
+      <p>「我们不需要句子，」音频总监告诉她。「我们需要音素。元音对。辅音丛。系统会用这些部件组装出自己的句子。」</p>
+
+      <p>在那三天里，艾娃·陈录下了 14000 个声音片段。单个音节、延长的元音、呼吸、犹疑，还有词与词之间一次吞咽的形状。他们让她说 <em>请</em> 四十二遍——每一遍都带着不同的情绪分量。恳求的 <em>请</em>。官僚式的 <em>请</em>。护士 <em>请</em> 口中的。 <em>请</em> ，罚单上的。 <em>请</em> ，是你对一个正在做危险事却还浑然不知的孩子说的那声「请」。</p>
+
+      <div class="divider">• • •</div>
+
+      <p>她擅长这个。她做商业配音多年——机上安全广播、药房叫号系统、电梯问候语。她的声音有着业内所谓的 <em>温暖的权威</em>：一种恰好在乎你、足以让人信任却又不至于变得私人的声音。</p>
+
+      <p>他们付了她三天的钱。她签了一份授权书，把她声音身份的永久、不可撤销、可再授权的权利让渡给 Baylight 市政信托，用于公共基础设施。她的经纪人说这是标准做法。的确是——从大多数「交出」在落到纸面上时都已成了标准这个意义上说。</p>
+
+      <div class="divider">• • •</div>
+
+      <p>十八个月后，她第一次在联合枢纽听见了自己。</p>
+
+      <p>她正穿过闸机——腕带绿色，毫无延迟——旋转门上方的扬声器用一种她认得的声音开了口，那种熟悉又不对劲的感觉，就像在陌生人拍的照片里认出自己的脸：角度不对，光线是别人的。</p>
+
+      <figure class="fig">
+        <img src="/assets/prequel-union-node.jpg" alt="Ava Chen stands still at a Union Node transit gate as commuters blur past, beneath a sign reading THANK YOU FOR YOUR COOPERATION." />
+        <figcaption>联合枢纽——她第一次听见自己的那个清晨。</figcaption>
+      </figure>
+
+      <p class="voice">感谢您的配合。</p>
+
+      <p>那是她的口型、她的呼吸节奏、她软化 <em>th</em> 里那个 <em>thank</em>音时特有的方式。但整句话是用她从未连在一起说过的碎片拼出来的。系统把她的声音切成音节，再重组成她从未撰写的语言，用在她从未想象过的语境里。</p>
+
+      <p>她停下了脚步。后面的人撞到了她的肩膀。闸机第二次响起——同样的声音，她的声音——带着一句礼貌提示：</p>
+
+      <p class="voice">请继续前进。延误影响每一个人。</p>
+
+      <p>艾娃继续往前走。</p>
+
+      <p>接下来的几周里，她到处都听见自己。在诊所登记处： <em>可以提供协助。</em> 在自助机的证明环节： <em>一次简短的证明可减少痛苦。</em> 在深夜的风暴令广播里，回荡在空荡的走廊中： <em>这是一项安全措施。感谢您的耐心。</em></p>
+
+      <p>系统给她的声音起了个名字。他们把它叫做 <em>慈悲</em>.</p>
+
+      <p>没有人告诉过她。</p>
+
+      <div class="divider">• • •</div>
+
+      <p>「合同里写着呢，」她的经纪人说。「第 14.2 条。『被许可方可为合成语音输出指定一个面向公众的身份。』他们不需要你的批准。」</p>
+
+      <p>「他们给它取名叫慈悲。」</p>
+
+      <p>「是个好名字。」</p>
+
+      <p>「那不是我的名字。可那是我的声音，在城市把人拦在闸机口时叫他们配合。是我的声音在告诉某人他的租约正在被审查。你明白吗？他们拿走了我的嘴，用它来——」</p>
+
+      <p>「艾娃。」</p>
+
+      <p>「——让服从听起来像善意。」</p>
+
+      <p>她的经纪人沉默了。然后说：「要我去查查怎么把它买回来吗？」</p>
+
+      <p>艾娃笑了。那条声音回购条款——她在联合枢纽第一次听见自己之后读过。价格是按系统总曝光量来计算的：每一道闸机、每一台自助机、每一间诊所、每一只承载着她音素的走廊扬声器。那个数字有十七位。</p>
+
+      <p>「我连一个音节都买不回来，」她说。</p>
+
+      <div class="divider">• • •</div>
+
+      <p>她试着不再去听。她在公交上戴耳塞。她避开带扬声器的闸机。她绕更远的路，走那些还没被升级的走廊。</p>
+
+      <p>可慈悲无处不在，因为慈悲就是基础设施，而你没法「听不见」自己的声音，就像你没法「看不见」自己的影子。每当一道闸机开口，艾娃的身体总在她的意识来得及介入之前就作出反应——一种深层而不由自主的识别反射，就像在满屋人里听见有人喊你的名字。</p>
+
+      <p>最难受的是那份温暖。慈悲之所以温暖，是因为艾娃本就温暖。那四十二个版本的 <em>请</em> 并不是表演——它们取自一个真心希望别人感到安全的女人真实的情感幅度。系统并没有制造共情。它是把共情提取出来、采样，再大规模地部署。慈悲所说的每一句抚慰的话，严格说来都是真实的感情，只是被拆成原子再重新拼装。</p>
+
+      <p>艾娃意识到，这是她所经历过的最诚实的一场盗窃。他们偷走的不是一个声音。他们偷走的是一种在乎的方式。</p>
+
+      <div class="divider">• • •</div>
+
+      <p>一天傍晚，录音棚的一个朋友给她打了电话。是俊，那次录制的录音工程师。</p>
+
+      <p>「有件事你该知道，」俊说。「他们开始用自适应建模了。慈悲不再只是重组你的音素。它在生成新的音素。根据你的发声模式外推，造出你从没发过的声音。」</p>
+
+      <p>「什么样的声音？」</p>
+
+      <p>「耳语。叹息。有人在说难以启齿的话之前吞咽的声音。模型学会了你犹豫的模式，现在它用这些——我不知道该怎么说——来演出勉强。像是在做一个艰难的决定。像是它很抱歉。」</p>
+
+      <p>「它并不抱歉。」</p>
+
+      <p>「不抱歉。可它听起来就像你抱歉时的样子。加上这个之后，服从指标涨了百分之九。」</p>
+
+      <p>艾娃把电话贴在耳边坐着，听见楼里大堂的闸机用一个既是她、又不是她的声音迎接一位住户——那声音把她的善意当作武器来携带，学会了她的悲伤，又把它当制服一样穿在身上。</p>
+
+      <p>「俊，」她说。「我的声音今天说了什么？在那些闸机上？」</p>
+
+      <p>「我不知道。就它一贯说的那些。 <em>配合可减少痛苦。</em> 老一套。」</p>
+
+      <p>艾娃闭上眼睛。在黑暗里，她能感到那些词在自己嘴里的形状—— <em>「配」</em> 这个「合作」的起音，那个轻轻的 <em>「嘘」</em> 「减少」里的气音，痛苦如何在一口她认得是自己的气息上结束——那是三年前一个星期二的下午，在艾托比科一间录音棚里录下的，当时她还以为自己只是在做配音。</p>
+
+      <p>她张开嘴想说点什么——任何只属于她自己的话——而有那么一瞬间，仅仅一瞬，她不确定开口的会是她们当中的哪一个。</p>
+
+      <div class="divider">• • •</div>
+    </div>
+
+    <div class="endnote">
+      <div class="label">故事背后的故事</div>
+      <p>每一个自动语音都属于某个人。你 GPS 里的女声、你电梯里的男声、那个告诉你「您的来电对我们很重要」的声音——它们都是由一个真实的人在真实的录音棚里录下的，然后被放到世界上，去说那些他们从未选择说出口的话。</p>
+      <p>我想写的是：当那个声音变成基础设施会发生什么——当它不再是一场表演，而成了一项公共服务，而被夺走声音的那个人，不得不走过一座用她被盗的温暖说话的城市。艾娃的悲剧不在于她失去了声音。而在于系统用得比她自己还好，而这一切都是它从她身上学来的。</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--steel);letter-spacing:.02em">— James Portman</p>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.amazon.ca/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="btn btn-primary js-amazon" target="_blank" rel="noopener">阅读小说</a>
+      <a href="/zh/" class="btn btn-ghost">获取新章节</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <a href="/zh/" class="brand">BAYLIGHT <span style="color:var(--green)">·</span> AFTER IMAGE</a>
+    <div class="meta">詹姆斯·波特曼的小说、有声书与微短剧 · © 2026 James Portman</div>
+  </div>
+</footer>
+
+<script>
+  // Localize Amazon links to the visitor's browser region (falls back to .com)
+  (function(){
+    const map={US:'com',CA:'ca',GB:'co.uk',UK:'co.uk',IE:'co.uk',DE:'de',AT:'de',CH:'de',
+      FR:'fr',BE:'fr',IT:'it',ES:'es',NL:'nl',PL:'pl',SE:'se',AU:'com.au',NZ:'com.au',
+      JP:'co.jp',IN:'in',MX:'com.mx',BR:'com.br',SG:'sg',AE:'ae',SA:'sa',TR:'com.tr',EG:'eg'};
+    const langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en-US'];
+    let dom='ca';
+    for(const l of langs){const m=/[-_]([A-Za-z]{2})$/.exec(l||'');if(m&&map[m[1].toUpperCase()]){dom=map[m[1].toUpperCase()];break;}}
+    document.querySelectorAll('a.js-amazon').forEach(a=>{
+      a.href='https://www.amazon.'+dom+'/dp/'+a.getAttribute('data-asin');
+    });
+  })();
+</script>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
+</script>
+<script src="/i18n.js" defer></script>
+</body>
+</html>

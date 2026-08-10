@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enregistrement original — une préquelle de Baylight par James Portman</title>
+<meta name="description" content="Enregistrement original — une préquelle gratuite de Baylight After Image. Une comédienne de doublage entend sa propre chaleur transformée en instrument de docilité de la ville." />
+<meta property="og:title" content="Enregistrement original — une préquelle de Baylight" />
+<meta property="og:description" content="Ils n’ont pas volé une voix. Ils ont volé une façon de prendre soin." />
+<meta property="og:image" content="/assets/cover.jpg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<!-- Canonical + language alternates (i18n.js updates canonical to the active language at runtime). -->
+<link rel="canonical" href="https://baylight.city/fr/prequel/" />
+<link rel="alternate" hreflang="en" href="https://baylight.city/prequel.html" />
+<link rel="alternate" hreflang="pt" href="https://baylight.city/pt/prequel/" />
+<link rel="alternate" hreflang="es" href="https://baylight.city/es/prequel/" />
+<link rel="alternate" hreflang="fr" href="https://baylight.city/fr/prequel/" />
+<link rel="alternate" hreflang="zh" href="https://baylight.city/zh/prequel/" />
+<link rel="alternate" hreflang="fa" href="https://baylight.city/fa/prequel/" />
+<link rel="alternate" hreflang="x-default" href="https://baylight.city/prequel.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,12..72,400;0,12..72,500;1,12..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--read:#d4dde4;--muted:#8a99a6;
+    --line:rgba(255,255,255,.09);--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
+  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .nav-back:hover{color:var(--green)}
+
+  .story{padding:130px 0 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06);margin-bottom:26px}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(38px,7vw,64px);line-height:.96;letter-spacing:.01em;margin-bottom:14px}
+  .byline{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:40px}
+  .byline b{color:var(--steel);font-weight:500}
+
+  .prose{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.78;color:var(--read)}
+  .prose p{margin-bottom:24px}
+  .prose p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:62px;line-height:.72;float:left;padding:8px 14px 0 0}
+  .prose em{font-style:italic;color:#e7eef3}
+  .divider{text-align:center;color:var(--green-dim);letter-spacing:.5em;font-size:14px;margin:34px 0;user-select:none}
+  /* the city's voice */
+  .voice{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);background:rgba(57,240,138,.05);border-left:2px solid var(--green-dim);
+    padding:14px 20px;margin:6px 0 24px;line-height:1.7}
+  .fig{margin:38px 0}
+  .fig img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+  .fig figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.05em;
+    color:var(--muted);margin-top:12px;text-align:center}
+  .listen{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 44px}
+  .listen .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .listen audio{width:100%;filter:invert(.92) hue-rotate(180deg) saturate(1.1)}
+  .listen .note{font-size:13px;color:var(--muted);margin-top:10px;font-family:'Inter',sans-serif}
+
+  .endnote{margin-top:20px;padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .endnote .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .endnote .label::before{content:"";width:24px;height:1px;background:var(--green-dim)}
+  .endnote p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.75;color:var(--read);margin-bottom:16px}
+  .endnote p:last-child{margin-bottom:0}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:48px 0 10px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    font-size:13px;padding:15px 26px;border-radius:3px;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.4)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;margin-top:50px}
+  footer .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .meta{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/fr/" class="brand" aria-label="Baylight After Image — home">BAYLIGHT <span>·</span> AFTER IMAGE</a>
+    <a href="/fr/" class="nav-back">← Retour au site</a>
+  </div>
+</header>
+
+<article class="story">
+  <div class="wrap">
+    <span class="chip">Préquelle</span>
+    <h1>Enregistrement Original</h1>
+    <p class="byline">Une préquelle de Baylight · par <b>James Portman</b></p>
+
+    <div class="listen">
+      <div class="label">▶ Écoutez la préquelle</div>
+      <audio controls preload="metadata">
+        <source src="/assets/prequel-original-recording.mp3" type="audio/mpeg">
+        Votre navigateur ne prend pas en charge la lecture audio.
+      </audio>
+      <p class="note">Livre audio narré · environ 8 minutes. Vous préférez lire ? L’histoire complète est ci-dessous.</p>
+    </div>
+
+    <div class="prose">
+      <p class="first">Le contrat était simple. Trois jours dans un studio à Etobicoke, à lire un script qui ne contenait aucune phrase complète.</p>
+
+      <p>« Nous n’avons pas besoin de phrases », lui dit le directeur audio. « Nous avons besoin de phonèmes. De paires de voyelles. De groupes de consonnes. Le système construit ses propres phrases à partir des morceaux. »</p>
+
+      <p>Ava Chen a enregistré 14 000 fragments vocaux au cours de ces trois jours. Des syllabes isolées, des voyelles tenues, des souffles, des hésitations, la forme d’une déglutition entre les mots. On lui a demandé de dire <em>s’il vous plaît</em> quarante-deux fois — chacune avec un poids émotionnel différent. Un s’il vous plaît suppliant <em>s’il vous plaît</em>. Bureaucratique <em>s’il vous plaît</em>. Le <em>s’il vous plaît</em> d’une infirmière. Le <em>s’il vous plaît</em> d’une contravention. Le <em>s’il vous plaît</em> qu’on dit à un enfant en train de faire quelque chose de dangereux sans encore le savoir.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Elle était douée pour ça. Elle faisait du travail de voix commerciale depuis des années — annonces de sécurité en vol, systèmes de file d’attente de pharmacie, messages d’ascenseur. Sa voix avait ce que l’industrie appelait <em>une autorité chaleureuse</em> : le son de quelqu’un qui se souciait de vous juste assez pour être digne de confiance, mais pas au point que cela devienne personnel.</p>
+
+      <p>On l’a payée pour trois jours. Elle a signé une cession accordant au Fonds Civique Baylight des droits perpétuels, irrévocables et sous-licenciables sur son identité vocale pour un usage dans l’infrastructure publique. Son agent a dit que c’était standard. Ça l’était, au sens où la plupart des redditions sont déjà standard quand elles arrivent aux formulaires.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Elle s’est entendue pour la première fois à Union Node, dix-huit mois plus tard.</p>
+
+      <p>Elle franchissait le portique de transit — bracelet vert, aucun délai — quand le haut-parleur au-dessus du tourniquet a parlé d’une voix qu’elle a reconnue comme on reconnaît son propre visage sur une photo prise par un inconnu : familier, mais faux. L’angle était de travers. La lumière était celle de quelqu’un d’autre.</p>
+
+      <figure class="fig">
+        <img src="/assets/prequel-union-node.jpg" alt="Ava Chen stands still at a Union Node transit gate as commuters blur past, beneath a sign reading THANK YOU FOR YOUR COOPERATION." />
+        <figcaption>Union Node — le matin où elle s’est entendue pour la première fois.</figcaption>
+      </figure>
+
+      <p class="voice">Merci de votre coopération.</p>
+
+      <p>C’était la forme de sa bouche, le rythme de sa respiration, sa manière particulière d’adoucir le <em>th</em> dans <em>thank</em>. Mais la phrase avait été assemblée à partir de morceaux qu’elle n’avait jamais prononcés ensemble. Le système avait découpé sa voix en syllabes et les avait réassemblées en un langage qu’elle n’avait pas écrit, dans des contextes qu’elle n’avait pas imaginés.</p>
+
+      <p>Elle s’est arrêtée de marcher. La personne derrière elle a heurté son épaule. Le portique a sonné une deuxième fois — la même voix, sa voix — avec un rappel de courtoisie :</p>
+
+      <p class="voice">Veuillez continuer à avancer. Les retards touchent tout le monde.</p>
+
+      <p>Ava a continué d’avancer.</p>
+
+      <p>Dans les semaines qui ont suivi, elle s’est entendue partout. Aux enregistrements de clinique : <em>De l’aide est disponible.</em> Aux attestations de borne : <em>Une brève attestation réduit la souffrance.</em> Aux annonces d’ordre de tempête, tard dans la nuit, résonnant dans des couloirs vides : <em>Ceci est une mesure de sécurité. Merci de votre patience.</em></p>
+
+      <p>Le système avait donné un nom à sa voix. Ils l’appelaient <em>Clémence</em>.</p>
+
+      <p>On ne le lui avait pas dit.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>« C’est dans le contrat », dit son agent. « Clause 14.2. ‘Le licencié peut attribuer une identité publique à la sortie vocale synthétisée.’ Ils n’avaient pas besoin de ton accord. »</p>
+
+      <p>« Ils l’ont appelée Clémence. »</p>
+
+      <p>« C’est un joli nom. »</p>
+
+      <p>« Ce n’est pas mon nom. Mais c’est ma voix qui dit aux gens de coopérer pendant que la ville les retient à un portique. C’est ma voix qui dit à quelqu’un que son bail est en réexamen. Tu comprends ? Ils ont pris ma bouche et ils s’en servent pour— »</p>
+
+      <p>« Ava. »</p>
+
+      <p>« —faire sonner l’obéissance comme de la gentillesse. »</p>
+
+      <p>Son agent resta silencieux. Puis : « Tu veux que je regarde comment la racheter ? »</p>
+
+      <p>Ava rit. La clause de rachat vocal — elle l’avait lue après la première fois où elle s’était entendue à Union Node. Le prix se calculait en fonction de l’exposition totale dans le système : chaque portique, borne, clinique et haut-parleur de couloir qui portait ses phonèmes. Le nombre avait dix-sept chiffres.</p>
+
+      <p>« Je ne pourrais pas racheter une seule syllabe », dit-elle.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Elle essaya d’arrêter d’écouter. Elle portait des écouteurs dans les transports. Elle évitait les portiques équipés de haut-parleurs. Elle prenait des trajets plus longs par des couloirs qui n’avaient pas été modernisés.</p>
+
+      <p>Mais Clémence était partout, parce que Clémence était une infrastructure, et on ne peut pas dé-entendre sa propre voix comme on ne peut pas dé-voir sa propre ombre. Chaque fois qu’un portique parlait, le corps d’Ava réagissait avant que son esprit ne puisse intervenir — un réflexe de reconnaissance, profond et involontaire, comme entendre son nom appelé à l’autre bout d’une pièce.</p>
+
+      <p>Le pire, c’était la chaleur. Clémence était chaleureuse parce qu’Ava était chaleureuse. Les quarante-deux versions de <em>s’il vous plaît</em> n’étaient pas du jeu — elles avaient été puisées dans la véritable palette émotionnelle d’une femme qui voulait sincèrement que les gens se sentent en sécurité. Le système n’avait pas fabriqué de l’empathie. Il l’avait extraite, échantillonnée et déployée à grande échelle. Chaque phrase apaisante que prononçait Clémence était, techniquement, un vrai sentiment, atomisé et réassemblé.</p>
+
+      <p>C’était, comprit Ava, le vol le plus honnête qu’elle ait jamais connu. Ils n’avaient pas volé une voix. Ils avaient volé une façon de se soucier.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>Un ami du studio l’appela un soir. Jun, qui avait travaillé sur la session comme ingénieur du son.</p>
+
+      <p>« Tu devrais savoir un truc », dit Jun. « Ils ont commencé à utiliser de la modélisation adaptative. Clémence ne se contente plus de recombiner tes phonèmes. Elle en génère de nouveaux. Elle extrapole à partir de tes motifs vocaux pour produire des sons que tu n’as jamais faits. »</p>
+
+      <p>« Quel genre de sons ? »</p>
+
+      <p>« Des murmures. Des soupirs. Le son de quelqu’un qui déglutit avant de dire quelque chose de difficile. Le modèle a appris tes schémas d’hésitation et il s’en sert maintenant pour — je ne sais pas comment dire ça — jouer la réticence. Comme s’il prenait une décision difficile. Comme s’il était désolé. »</p>
+
+      <p>« Il n’est pas désolé. »</p>
+
+      <p>« Non. Mais il sonne comme toi quand tu es désolée. Et les indicateurs d’obéissance ont grimpé de neuf pour cent après qu’ils l’ont ajouté. »</p>
+
+      <p>Ava resta le téléphone contre l’oreille et écouta le portique du hall de l’immeuble accueillir un résident d’une voix qui était et n’était pas la sienne, une voix qui portait sa gentillesse comme une arme, qui avait appris son chagrin et le portait comme un uniforme.</p>
+
+      <p>« Jun », dit-elle. « Qu’a dit ma voix aujourd’hui ? Aux portiques ? »</p>
+
+      <p>« Je ne sais pas. Ce qu’elle dit toujours. <em>La coopération réduit la souffrance.</em> Le refrain habituel. »</p>
+
+      <p>Ava ferma les yeux. Dans le noir, elle pouvait sentir la forme des mots dans sa propre bouche — le <em>coo</em> de coopération, le doux <em>chut</em> de réduit, la façon dont la souffrance se terminait sur un souffle qu’elle reconnaissait comme le sien, enregistré il y a trois ans dans un studio à Etobicoke, un mardi après-midi, quand elle croyait ne faire que du travail de voix.</p>
+
+      <p>Elle ouvrit la bouche pour dire quelque chose — n’importe quoi qui n’appartienne qu’à elle — et l’espace d’un instant, un seul instant, elle ne sut pas laquelle des deux allait parler.</p>
+
+      <div class="divider">• • •</div>
+    </div>
+
+    <div class="endnote">
+      <div class="label">L’Histoire Derrière l’Histoire</div>
+      <p>Chaque voix automatisée appartient à quelqu’un. La femme de votre GPS, l’homme de votre ascenseur, la voix qui vous dit que votre appel est important — tous ont été enregistrés par une personne réelle, dans un vrai studio, puis lâchés dans le monde pour dire des choses qu’ils n’ont jamais choisi de dire.</p>
+      <p>Je voulais écrire sur ce qui se passe quand cette voix devient une infrastructure — quand ce n’est plus une performance mais un service public, et que la personne à qui on l’a prise doit traverser une ville qui parle avec sa chaleur volée. La tragédie d’Ava n’est pas d’avoir perdu sa voix. C’est que le système l’utilise mieux qu’elle ne le pourrait jamais, et qu’il a appris à le faire d’elle.</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--steel);letter-spacing:.02em">— James Portman</p>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.amazon.ca/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="btn btn-primary js-amazon" target="_blank" rel="noopener">Lire le Roman</a>
+      <a href="/fr/" class="btn btn-ghost">Recevoir les Nouveaux Chapitres</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <a href="/fr/" class="brand">BAYLIGHT <span style="color:var(--green)">·</span> AFTER IMAGE</a>
+    <div class="meta">Un roman, un livre audio et un microdrame de James Portman · © 2026 James Portman</div>
+  </div>
+</footer>
+
+<script>
+  // Localize Amazon links to the visitor's browser region (falls back to .com)
+  (function(){
+    const map={US:'com',CA:'ca',GB:'co.uk',UK:'co.uk',IE:'co.uk',DE:'de',AT:'de',CH:'de',
+      FR:'fr',BE:'fr',IT:'it',ES:'es',NL:'nl',PL:'pl',SE:'se',AU:'com.au',NZ:'com.au',
+      JP:'co.jp',IN:'in',MX:'com.mx',BR:'com.br',SG:'sg',AE:'ae',SA:'sa',TR:'com.tr',EG:'eg'};
+    const langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en-US'];
+    let dom='ca';
+    for(const l of langs){const m=/[-_]([A-Za-z]{2})$/.exec(l||'');if(m&&map[m[1].toUpperCase()]){dom=map[m[1].toUpperCase()];break;}}
+    document.querySelectorAll('a.js-amazon').forEach(a=>{
+      a.href='https://www.amazon.'+dom+'/dp/'+a.getAttribute('data-asin');
+    });
+  })();
+</script>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
+</script>
+<script src="/i18n.js" defer></script>
+</body>
+</html>

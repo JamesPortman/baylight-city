@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ضبطِ اصلی — پیش‌درآمدی بر Baylight از جیمز پورتمن</title>
+<meta name="description" content="ضبطِ اصلی — پیش‌درآمدی رایگان بر Baylight After Image. یک صداپیشه می‌شنود که گرمای خودش به ابزارِ فرمان‌برداریِ شهر بدل شده است." />
+<meta property="og:title" content="ضبطِ اصلی — پیش‌درآمدی بر Baylight" />
+<meta property="og:description" content="آن‌ها یک صدا را ندزدیدند. آن‌ها شیوه‌ای از مراقبت را دزدیدند." />
+<meta property="og:image" content="/assets/cover.jpg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<!-- Canonical + language alternates (i18n.js updates canonical to the active language at runtime). -->
+<link rel="canonical" href="https://baylight.city/fa/prequel/" />
+<link rel="alternate" hreflang="en" href="https://baylight.city/prequel.html" />
+<link rel="alternate" hreflang="pt" href="https://baylight.city/pt/prequel/" />
+<link rel="alternate" hreflang="es" href="https://baylight.city/es/prequel/" />
+<link rel="alternate" hreflang="fr" href="https://baylight.city/fr/prequel/" />
+<link rel="alternate" hreflang="zh" href="https://baylight.city/zh/prequel/" />
+<link rel="alternate" hreflang="fa" href="https://baylight.city/fa/prequel/" />
+<link rel="alternate" hreflang="x-default" href="https://baylight.city/prequel.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,12..72,400;0,12..72,500;1,12..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c0e;--panel:#141a20;--ink:#e8edf1;--read:#d4dde4;--muted:#8a99a6;
+    --line:rgba(255,255,255,.09);--green:#39f08a;--green-dim:#1f7a4a;--steel:#9fb3c0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px}
+
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
+  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .brand span{color:var(--green)}
+  .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .nav-back:hover{color:var(--green)}
+
+  .story{padding:130px 0 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);
+    border:1px solid var(--green-dim);border-radius:2px;padding:6px 12px;background:rgba(57,240,138,.06);margin-bottom:26px}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;
+    font-size:clamp(38px,7vw,64px);line-height:.96;letter-spacing:.01em;margin-bottom:14px}
+  .byline{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:var(--muted);
+    border-bottom:1px solid var(--line);padding-bottom:30px;margin-bottom:40px}
+  .byline b{color:var(--steel);font-weight:500}
+
+  .prose{font-family:'Newsreader',Georgia,serif;font-size:20px;line-height:1.78;color:var(--read)}
+  .prose p{margin-bottom:24px}
+  .prose p.first::first-letter{font-family:'Archivo';font-weight:900;color:var(--green);
+    font-size:62px;line-height:.72;float:left;padding:8px 14px 0 0}
+  .prose em{font-style:italic;color:#e7eef3}
+  .divider{text-align:center;color:var(--green-dim);letter-spacing:.5em;font-size:14px;margin:34px 0;user-select:none}
+  /* the city's voice */
+  .voice{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--green);background:rgba(57,240,138,.05);border-left:2px solid var(--green-dim);
+    padding:14px 20px;margin:6px 0 24px;line-height:1.7}
+  .fig{margin:38px 0}
+  .fig img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 24px 64px rgba(0,0,0,.55)}
+  .fig figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.05em;
+    color:var(--muted);margin-top:12px;text-align:center}
+  .listen{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin:0 0 44px}
+  .listen .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .listen audio{width:100%;filter:invert(.92) hue-rotate(180deg) saturate(1.1)}
+  .listen .note{font-size:13px;color:var(--muted);margin-top:10px;font-family:'Inter',sans-serif}
+
+  .endnote{margin-top:20px;padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+  .endnote .label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .endnote .label::before{content:"";width:24px;height:1px;background:var(--green-dim)}
+  .endnote p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.75;color:var(--read);margin-bottom:16px}
+  .endnote p:last-child{margin-bottom:0}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:48px 0 10px}
+  .btn{font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    font-size:13px;padding:15px 26px;border-radius:3px;transition:.2s;border:1px solid transparent}
+  .btn-primary{background:var(--green);color:#04130a;box-shadow:0 0 30px rgba(57,240,138,.22)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(57,240,138,.4)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--green-dim);color:var(--green)}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 40px;margin-top:50px}
+  footer .wrap{max-width:1160px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer .meta{color:var(--muted);font-size:13px}
+</style>
+<style id="bl-rtl">html[dir=rtl] body{direction:rtl}html[dir=rtl] p,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=rtl] .sec,html[dir=rtl] .sec-lead,html[dir=rtl] .eyebrow,html[dir=rtl] li,html[dir=rtl] blockquote{text-align:right}</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/fa/" class="brand" aria-label="Baylight After Image — home">BAYLIGHT <span>·</span> AFTER IMAGE</a>
+    <a href="/fa/" class="nav-back">→ بازگشت به سایت</a>
+  </div>
+</header>
+
+<article class="story">
+  <div class="wrap">
+    <span class="chip">پیش‌درآمد</span>
+    <h1>ضبطِ اصلی</h1>
+    <p class="byline">پیش‌درآمدی از بی‌لایت · نوشته‌ی <b>James Portman</b></p>
+
+    <div class="listen">
+      <div class="label">▶ شنیدنِ پیش‌درآمد</div>
+      <audio controls preload="metadata">
+        <source src="/assets/prequel-original-recording.mp3" type="audio/mpeg">
+        مرورگرِ شما از پخشِ صدا پشتیبانی نمی‌کند.
+      </audio>
+      <p class="note">کتابِ صوتیِ روایت‌شده · حدود ۸ دقیقه. خواندن را ترجیح می‌دهی؟ داستانِ کامل در پایین است.</p>
+    </div>
+
+    <div class="prose">
+      <p class="first">قرارداد ساده بود. سه روز در استودیویی در اتوبیکوک، خواندن از روی متنی که هیچ جمله‌ی کاملی نداشت.</p>
+
+      <p>«ما به جمله نیازی نداریم،» مدیرِ صدا به او گفت. «ما به واج‌ها نیاز داریم. جفت‌واکه‌ها. خوشه‌های همخوان. سیستم جمله‌های خودش را از این اجزا می‌سازد.»</p>
+
+      <p>آوا چِن در آن سه روز ۱۴٬۰۰۰ پاره‌صدا ضبط کرد. هجاهای تک، واکه‌های کشیده، نفس‌ها، مکث‌ها، شکلِ فروبردنِ آبِ دهان میانِ کلمات. از او خواستند بگوید <em>لطفاً</em> را چهل‌ودو بار — هر بار با وزنی عاطفیِ متفاوت: <em>لطفاً</em> از سرِ التماس. <em>لطفاً</em> اداری. <em>لطفاً</em> از یک پرستار. <em>لطفاً</em> از یک قبضِ جریمه. <em>لطفاً</em> همان که به کودکی می‌گویی که دارد کاری خطرناک می‌کند و هنوز آن را نمی‌داند.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>او در این کار خوب بود. سال‌ها کارِ صداپیشگیِ تجاری کرده بود — اعلان‌های ایمنیِ پرواز، سامانه‌های نوبتِ داروخانه، خوش‌آمدگوییِ آسانسورها. صدایش چیزی داشت که در این صنعت به آن می‌گفتند <em>اقتدارِ گرم</em>: صدای کسی که آن‌قدر به تو اهمیت می‌دهد که بتوان به او اعتماد کرد، اما نه آن‌قدر که شخصی شود.</p>
+
+      <p>دستمزدِ سه روز را به او پرداختند. رضایت‌نامه‌ای امضا کرد که به «تراستِ مدنیِ بی‌لایت» حقوقِ دائمی، غیرقابلِ‌فسخ و قابلِ‌واگذاریِ هویتِ صداییِ او را برای استفاده در زیرساختِ عمومی می‌داد. کارگزارش گفت این استاندارد است. و بود — به این معنا که بیشترِ تسلیم‌ها تا وقتی به کاغذبازی می‌رسند، استاندارد شده‌اند.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>او نخستین‌بار هجده ماه بعد، در «یونیون نود»، صدای خودش را شنید.</p>
+
+      <p>داشت از دروازه‌ی عبور می‌گذشت — مچ‌بندش سبز، بی هیچ تأخیر — که بلندگوی بالای گردانه با صدایی سخن گفت که آن را همان‌گونه شناخت که چهره‌ی خودت را در عکسی می‌شناسی که غریبه‌ای گرفته است: آشنا، اما نادرست. زاویه‌اش خطا بود. نورش از آنِ کسِ دیگری بود.</p>
+
+      <figure class="fig">
+        <img src="/assets/prequel-union-node.jpg" alt="Ava Chen stands still at a Union Node transit gate as commuters blur past, beneath a sign reading THANK YOU FOR YOUR COOPERATION." />
+        <figcaption>یونیون نود — صبحی که نخستین‌بار صدای خود را شنید.</figcaption>
+      </figure>
+
+      <p class="voice">از همکاریِ شما سپاسگزاریم.</p>
+
+      <p>شکلِ دهانش بود، الگوی نفسش، شیوه‌ی خاصش در نرم‌کردنِ <em>th</em> در <em>thank</em>. اما آن جمله از تکه‌هایی سرِ هم شده بود که او هرگز آن‌ها را کنارِ هم نگفته بود. سیستم صدایش را به هجاها بریده و دوباره به زبانی سرِ هم کرده بود که او ننوشته بود، در بافت‌هایی که تصورشان را هم نکرده بود.</p>
+
+      <p>از راه‌رفتن ایستاد. کسی که پشتِ سرش بود به شانه‌اش خورد. دروازه بارِ دوم زنگ زد — همان صدا، صدای خودش — با یک پیامِ مؤدبانه:</p>
+
+      <p class="voice">لطفاً به حرکت ادامه دهید. تأخیرها بر همه اثر می‌گذارند.</p>
+
+      <p>آوا به حرکت ادامه داد.</p>
+
+      <p>در هفته‌های پس از آن، همه‌جا صدای خود را شنید. هنگامِ پذیرش در درمانگاه‌ها: <em>کمک در دسترس است.</em> هنگامِ تأییدیه‌های کیوسک: <em>یک تأییدیه‌ی کوتاه، رنج را کم می‌کند.</em> در اعلان‌های فرمانِ توفان، پاسی از شب، پیچیده در راهروهای خالی: <em>این یک تدبیرِ ایمنی است. از شکیباییِ شما سپاسگزاریم.</em></p>
+
+      <p>سیستم به صدای او نامی داده بود. آن را می‌نامیدند <em>رحمت</em>.</p>
+
+      <p>به او نگفته بودند.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>«در قرارداد هست،» کارگزارش گفت. «بندِ ۱۴٫۲. ‹دارنده‌ی مجوز می‌تواند هویتی عمومی به خروجیِ صداییِ ترکیب‌شده اختصاص دهد.› آن‌ها به تأییدِ تو نیازی نداشتند.»</p>
+
+      <p>«اسمش را رحمت گذاشتند.»</p>
+
+      <p>«اسمِ قشنگی است.»</p>
+
+      <p>«اسمِ من نیست. اما صدای من است که به مردم می‌گوید همکاری کنند، همان وقت که شهر آن‌ها را پشتِ دروازه نگه داشته است. صدای من است که به کسی می‌گوید اجاره‌نشینی‌اش در حالِ بازبینی است. می‌فهمی؟ دهانِ مرا گرفتند و دارند از آن استفاده می‌کنند تا—»</p>
+
+      <p>«آوا.»</p>
+
+      <p>«—تا فرمان‌برداری را مثلِ مهربانی جلوه دهند.»</p>
+
+      <p>کارگزارش ساکت شد. سپس: «می‌خواهی پیگیرِ بازخریدش شوم؟»</p>
+
+      <p>آوا خندید. بندِ بازخریدِ صدا — آن را پس از نخستین‌باری که در یونیون نود صدای خود را شنید، خوانده بود. قیمت تابعی از کلِ میزانِ حضور در سیستم محاسبه می‌شد: هر دروازه، کیوسک، درمانگاه و بلندگوی راهرو که واج‌های او را پخش می‌کرد. آن عدد هفده رقم داشت.</p>
+
+      <p>«حتی یک هجا را هم نمی‌توانم بازخرید کنم،» گفت.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>کوشید دیگر گوش ندهد. در مترو ایرفون می‌گذاشت. از دروازه‌های دارای بلندگو دوری می‌کرد. مسیرهای طولانی‌تری را از راهروهایی می‌رفت که هنوز ارتقا نیافته بودند.</p>
+
+      <p>اما رحمت همه‌جا بود، چون رحمت خودِ زیرساخت بود، و نمی‌توانی صدای خودت را نشنیده بگیری، همان‌طور که نمی‌توانی سایه‌ات را نادیده بگیری. هر بار که دروازه‌ای سخن می‌گفت، بدنِ آوا پیش از آنکه ذهنش مجالِ دخالت بیابد واکنش نشان می‌داد — یک بازتابِ بازشناسی، ژرف و ناخواسته، مثلِ شنیدنِ نامت که از آن‌سوی اتاق صدایت می‌زنند.</p>
+
+      <p>بدتر از همه گرمی بود. رحمت گرم بود چون آوا گرم بود. آن چهل‌ودو نسخه از <em>لطفاً</em> بازیگری نبود — از دامنه‌ی عاطفیِ واقعیِ زنی برگرفته شده بود که به‌راستی می‌خواست مردم احساسِ امنیت کنند. سیستم همدلی را نساخته بود. آن را استخراج کرده، نمونه‌برداری کرده و در مقیاسِ بزرگ به‌کار گرفته بود. هر عبارتِ آرام‌بخشی که رحمت می‌گفت، از نظرِ فنی احساسی واقعی بود، خُرد و دوباره سرِ هم شده.</p>
+
+      <p>آوا دریافت که این صادقانه‌ترین دزدی‌ای بود که تجربه کرده بود. آن‌ها یک صدا را ندزدیده بودند. یک شیوه‌ی مراقبت‌کردن را دزدیده بودند.</p>
+
+      <div class="divider">• • •</div>
+
+      <p>یک عصر، دوستی از استودیو به او زنگ زد. جون، که در آن جلسه مهندسِ صدا بود.</p>
+
+      <p>«باید چیزی را بدانی،» جون گفت. «شروع کرده‌اند به استفاده از مدل‌سازیِ تطبیقی. رحمت دیگر فقط واج‌های تو را از نو ترکیب نمی‌کند. دارد واج‌های تازه می‌سازد. از الگوهای صداییِ تو برون‌یابی می‌کند تا صداهایی بسازد که تو هرگز درنیاورده‌ای.»</p>
+
+      <p>«چه جور صداهایی؟»</p>
+
+      <p>«نجواها. آه‌ها. صدای فروبردنِ آبِ دهانِ کسی پیش از گفتنِ چیزی دشوار. مدل الگوهای تردیدِ تو را یاد گرفت و حالا از آن‌ها استفاده می‌کند تا — نمی‌دانم چطور بگویم — تا بی‌میلی را اجرا کند. انگار دارد تصمیمی سخت می‌گیرد. انگار متأسف است.»</p>
+
+      <p>«متأسف نیست.»</p>
+
+      <p>«نه. اما وقتی می‌گوید، مثلِ تو به‌نظر می‌رسد که متأسفی. و پس از افزودنِ آن، شاخص‌های فرمان‌برداری نُه درصد بالا رفت.»</p>
+
+      <p>آوا با گوشی چسبیده به گوشش نشست و شنید که دروازه‌ی لابیِ ساختمان به ساکنی خوش‌آمد می‌گوید، با صدایی که هم از آنِ او بود و هم نبود، صدایی که مهربانیِ او را مثلِ سلاحی حمل می‌کرد، که اندوهش را آموخته بود و مثلِ یونیفرم بر تن داشت.</p>
+
+      <p>«جون،» گفت. «امروز صدای من چه گفت؟ پشتِ دروازه‌ها؟»</p>
+
+      <p>«نمی‌دانم. همان که همیشه می‌گوید. <em>همکاری رنج را کم می‌کند.</em> مثلِ همیشه.»</p>
+
+      <p>آوا چشمانش را بست. در تاریکی می‌توانست شکلِ کلمات را در دهانِ خود حس کند — صدای <em>کو</em> یِ واژه‌ی «همکاری»، و صدای نرمِ <em>شش</em> یِ واژه‌ی «کاستن»، و آن‌گونه که «رنج» بر نفسی پایان می‌یافت که آن را از آنِ خود می‌شناخت، نفسی که سه سال پیش، بعدازظهرِ یک سه‌شنبه، در استودیویی در اتوبیکوک ضبط شده بود، وقتی گمان می‌کرد فقط دارد کارِ صدا انجام می‌دهد.</p>
+
+      <p>دهانش را باز کرد تا چیزی بگوید — هر چیزی که تنها از آنِ خودش باشد — و برای لحظه‌ای، فقط یک لحظه، مطمئن نبود کدام‌یک از آن دو سخن خواهد گفت.</p>
+
+      <div class="divider">• • •</div>
+    </div>
+
+    <div class="endnote">
+      <div class="label">داستانِ پشتِ داستان</div>
+      <p>هر صدای خودکار به کسی تعلق دارد. زنِ توی جی‌پی‌اس، مردِ توی آسانسور، صدایی که می‌گوید تماسِ شما مهم است — همه را انسانی واقعی در استودیویی واقعی ضبط کرده و سپس به جهان رها کرده‌اند تا چیزهایی بگویند که هرگز انتخابشان نکرده‌اند.</p>
+      <p>می‌خواستم درباره‌ی چیزی بنویسم که وقتی آن صدا به زیرساخت بدل می‌شود رخ می‌دهد — وقتی دیگر اجرا نیست بلکه خدماتی همگانی است، و کسی که صدا از او گرفته شده باید در شهری راه برود که با گرمای دزدیده‌شده‌ی خودش سخن می‌گوید. تراژدیِ آوا این نیست که صدایش را از دست داد. این است که سیستم بهتر از خودِ او از آن استفاده می‌کند، و این را از خودِ او آموخت.</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--steel);letter-spacing:.02em">— James Portman</p>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.amazon.ca/dp/B0H42YPXDM" data-asin="B0H42YPXDM" class="btn btn-primary js-amazon" target="_blank" rel="noopener">خواندنِ رمان</a>
+      <a href="/fa/" class="btn btn-ghost">دریافتِ فصل‌های تازه</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <a href="/fa/" class="brand">BAYLIGHT <span style="color:var(--green)">·</span> AFTER IMAGE</a>
+    <div class="meta">رمان، کتابِ صوتی و میکرودراما، اثرِ جیمز پورتمن · © ۲۰۲۶ جیمز پورتمن</div>
+  </div>
+</footer>
+
+<script>
+  // Localize Amazon links to the visitor's browser region (falls back to .com)
+  (function(){
+    const map={US:'com',CA:'ca',GB:'co.uk',UK:'co.uk',IE:'co.uk',DE:'de',AT:'de',CH:'de',
+      FR:'fr',BE:'fr',IT:'it',ES:'es',NL:'nl',PL:'pl',SE:'se',AU:'com.au',NZ:'com.au',
+      JP:'co.jp',IN:'in',MX:'com.mx',BR:'com.br',SG:'sg',AE:'ae',SA:'sa',TR:'com.tr',EG:'eg'};
+    const langs=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en-US'];
+    let dom='ca';
+    for(const l of langs){const m=/[-_]([A-Za-z]{2})$/.exec(l||'');if(m&&map[m[1].toUpperCase()]){dom=map[m[1].toUpperCase()];break;}}
+    document.querySelectorAll('a.js-amazon').forEach(a=>{
+      a.href='https://www.amazon.'+dom+'/dp/'+a.getAttribute('data-asin');
+    });
+  })();
+</script>
+<script>
+  // First-party pageview tracking (no cookies). Fire-and-forget.
+  (function(){try{
+    if(location.pathname.indexOf('/admin')===0)return;
+    var p={path:location.pathname,referrer:document.referrer||''};
+    var b=JSON.stringify(p);
+    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
+    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
+  }catch(e){}})();
+</script>
+<script src="/i18n.js" defer></script>
+</body>
+</html>
