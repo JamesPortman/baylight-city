@@ -4,12 +4,14 @@
 (function () {
   // ===== Add languages here =====
   var LANGS = [
-    { code: "en", label: "EN" },
-    { code: "pt", label: "PT" },
-    { code: "es", label: "ES" },
-    { code: "fr", label: "FR" },
-    { code: "zh", label: "中文" }
+    { code: "en", label: "English" },
+    { code: "pt", label: "Português" },
+    { code: "es", label: "Español" },
+    { code: "fr", label: "Français" },
+    { code: "zh", label: "中文" },
+    { code: "fa", label: "فارسی" }
   ];
+  var RTL = { fa: 1 };   // right-to-left languages
   var DEFAULT = "en";
   var STORE = "bl_lang";
 
@@ -64,6 +66,7 @@
 
   function setLang(code) {
     document.documentElement.lang = code;
+    document.documentElement.dir = RTL[code] ? "rtl" : "ltr";
     if (code === DEFAULT) { restore(); done(code); return; }
     if (dicts[code]) { applyDict(dicts[code]); done(code); return; }
     fetch("/i18n/" + code + ".json", { cache: "no-cache" })
@@ -105,7 +108,11 @@
       "#bl-lang select{background:transparent;color:#8a99a6;border:1px solid rgba(255,255,255,.18);" +
       "border-radius:3px;font:12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;padding:7px 8px;cursor:pointer}" +
       "#bl-lang select:hover{color:#39f08a;border-color:#1f7a4a}" +
-      "#bl-lang option{background:#10151a;color:#e8edf1}";
+      "#bl-lang option{background:#10151a;color:#e8edf1}" +
+      // Right-to-left support (Farsi): flow prose the correct direction.
+      "html[dir=rtl] body{direction:rtl}" +
+      "html[dir=rtl] p,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=rtl] .sec,html[dir=rtl] .sec-lead,html[dir=rtl] .eyebrow,html[dir=rtl] li,html[dir=rtl] blockquote{text-align:right}" +
+      "html[dir=rtl] #bl-lang{margin-left:0;margin-right:14px}";
     document.head.appendChild(st);
   }
 
