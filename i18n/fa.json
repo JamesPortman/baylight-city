@@ -166,5 +166,9 @@
   "This Corridor Doesn't Exist": "این راهرو وجود ندارد",
   "The page you're looking for isn't on the grid. Baylight has no record of it — and for once, that's fine.": "صفحه‌ای که دنبالش می‌گردی روی شبکه نیست. بی‌لایت هیچ سابقه‌ای از آن ندارد — و این‌بار، همین خوب است.",
   "> THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.": "> آستانه یافت نشد. بازگشت به یک خروجیِ شناخته‌شده.",
-  "Back to Baylight": "بازگشت به بی‌لایت"
+  "Back to Baylight": "بازگشت به بی‌لایت",
+  "__hrefs__": {
+    "/assets/baylight-prologue.pdf": "/assets/baylight-prologue-fa.pdf",
+    "/assets/baylight-chapter-1.pdf": "/assets/baylight-chapter-1-fa.pdf"
+  }
 }

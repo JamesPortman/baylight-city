@@ -166,5 +166,9 @@
   "This Corridor Doesn't Exist": "Ce Couloir N’Existe Pas",
   "The page you're looking for isn't on the grid. Baylight has no record of it — and for once, that's fine.": "La page que vous cherchez n’est pas sur la grille. Baylight n’en a aucune trace — et, pour une fois, c’est très bien.",
   "> THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.": "> SEUIL INTROUVABLE. RETOUR VERS UNE SORTIE CONNUE.",
-  "Back to Baylight": "Retour à Baylight"
+  "Back to Baylight": "Retour à Baylight",
+  "__hrefs__": {
+    "/assets/baylight-prologue.pdf": "/assets/baylight-prologue-fr.pdf",
+    "/assets/baylight-chapter-1.pdf": "/assets/baylight-chapter-1-fr.pdf"
+  }
 }

@@ -166,5 +166,9 @@
   "This Corridor Doesn't Exist": "此通道不存在",
   "The page you're looking for isn't on the grid. Baylight has no record of it — and for once, that's fine.": "你要找的页面不在网格上。Baylight 没有它的记录——而这一次，这样也好。",
   "> THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.": "> 未找到阈值。正在返回已知出口。",
-  "Back to Baylight": "返回 Baylight"
+  "Back to Baylight": "返回 Baylight",
+  "__hrefs__": {
+    "/assets/baylight-prologue.pdf": "/assets/baylight-prologue-zh.pdf",
+    "/assets/baylight-chapter-1.pdf": "/assets/baylight-chapter-1-zh.pdf"
+  }
 }

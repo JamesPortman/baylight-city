@@ -1,0 +1,39 @@
+# Clean language URLs -> served by the shared HTML (200 = rewrite, address stays pretty).
+# Language is detected from the path by i18n.js. English stays at / (no prefix).
+
+/pt/prequel        /prequel.html   200
+/pt/prequel/       /prequel.html   200
+/pt/prequel.html   /prequel.html   200
+/pt/index.html     /index.html     200
+/pt/              /index.html     200
+/pt               /index.html     200
+
+/es/prequel        /prequel.html   200
+/es/prequel/       /prequel.html   200
+/es/prequel.html   /prequel.html   200
+/es/index.html     /index.html     200
+/es/              /index.html     200
+/es               /index.html     200
+
+/fr/prequel        /prequel.html   200
+/fr/prequel/       /prequel.html   200
+/fr/prequel.html   /prequel.html   200
+/fr/index.html     /index.html     200
+/fr/              /index.html     200
+/fr               /index.html     200
+
+/zh/prequel        /prequel.html   200
+/zh/prequel/       /prequel.html   200
+/zh/prequel.html   /prequel.html   200
+/zh/index.html     /index.html     200
+/zh/              /index.html     200
+/zh               /index.html     200
+
+/fa/prequel        /prequel.html   200
+/fa/prequel/       /prequel.html   200
+/fa/prequel.html   /prequel.html   200
+/fa/index.html     /index.html     200
+/fa/              /index.html     200
+/fa               /index.html     200
+
+/prequel           /prequel.html   200

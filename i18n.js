@@ -45,7 +45,7 @@
     document.title = origTitle;
   }
 
-  function applyDict(d) {
+  function applyDict(d, code) {
     var hrefs = d.__hrefs__ || {};
     for (var i = 0; i < textNodes.length; i++) {
       var t = textNodes[i], v = d[t.key];
@@ -59,28 +59,81 @@
     }
     for (var j = 0; j < origHref.length; j++) {
       var h = origHref[j];
-      h.el.setAttribute("href", hrefs[h.orig] || h.orig);
+      var nav = navHref(h.orig, code);          // in-language page navigation
+      h.el.setAttribute("href", nav != null ? nav : (hrefs[h.orig] || h.orig));
     }
     if (d.__title__) document.title = d.__title__;
   }
+
+  // ---- path-based language routing -------------------------------------------
+  // Which same-site page a link/href points at, ignoring any language prefix.
+  // Returns "home", "prequel", or null (external / asset / anchor).
+  function linkPage(href) {
+    if (!href) return null;
+    if (/^(https?:|mailto:|tel:|data:|#)/i.test(href)) return null;
+    var path = href.split("#")[0].split("?")[0].replace(/\/+$/, "");
+    var seg = path.split("/").filter(Boolean);
+    if (seg.length && has(seg[0])) seg.shift();      // drop leading /xx
+    var rest = seg.join("/");
+    if (rest === "" ) return "home";
+    if (/(^|\/)index\.html$/.test(rest)) return "home";
+    if (/(^|\/)prequel(\.html)?$/.test(rest)) return "prequel";
+    return null;
+  }
+  // The clean URL for a page in a given language.
+  function pagePath(page, code) {
+    var base = (code === DEFAULT) ? "" : "/" + code;
+    if (page === "prequel") return (code === DEFAULT) ? "/prequel.html" : base + "/prequel";
+    return base + "/";
+  }
+  // Rewrite an in-site page link so navigation stays in the active language.
+  function navHref(orig, code) {
+    var page = linkPage(orig);
+    return page ? pagePath(page, code) : null;
+  }
+  // Which page THIS document is (from the current address).
+  function currentPage() {
+    var p = linkPage(location.pathname);
+    return p || "home";
+  }
+  function absUrl(path) { return location.origin.replace(/\/$/, "") + path; }
 
   function setLang(code) {
     document.documentElement.lang = code;
     document.documentElement.dir = RTL[code] ? "rtl" : "ltr";
     if (code === DEFAULT) { restore(); done(code); return; }
-    if (dicts[code]) { applyDict(dicts[code]); done(code); return; }
+    if (dicts[code]) { applyDict(dicts[code], code); done(code); return; }
     fetch("/i18n/" + code + ".json", { cache: "no-cache" })
       .then(function (r) { return r.ok ? r.json() : {}; })
-      .then(function (j) { dicts[code] = j; applyDict(j); done(code); })
+      .then(function (j) { dicts[code] = j; applyDict(j, code); done(code); })
       .catch(function () { done(code); });
   }
   function done(code) {
     try { localStorage.setItem(STORE, code); } catch (e) {}
     var sel = document.getElementById("bl-lang-select"); if (sel) sel.value = code;
+    updateUrl(code);
+  }
+  // Reflect the active language as a clean path (e.g. /fr/, /fr/prequel) so every
+  // page is shareable as a direct link. English is the default and stays at the
+  // root path. Also self-canonicalizes the page to the active-language URL.
+  function updateUrl(code) {
+    var path = pagePath(currentPage(), code);
+    if (window.history && history.replaceState) {
+      try { history.replaceState(null, "", path + location.search + location.hash); } catch (e) {}
+    }
+    var can = document.querySelector('link[rel="canonical"]');
+    if (can) can.setAttribute("href", absUrl(path));
   }
 
   function pick() {
+    // 1) language prefix in the path (/fr/…) — the canonical, shareable form
+    try {
+      var seg0 = location.pathname.split("/").filter(Boolean)[0];
+      if (seg0) { seg0 = seg0.toLowerCase(); if (has(seg0)) return seg0; }
+    } catch (e) {}
+    // 2) ?lang= query — back-compat for older links; canonicalized to a path
     try { var u = new URLSearchParams(location.search).get("lang"); if (u) { u = u.toLowerCase().slice(0, 2); if (has(u)) return u; } } catch (e) {}
+    // 3) saved preference, then 4) browser language
     try { var s = localStorage.getItem(STORE); if (s && has(s)) return s; } catch (e) {}
     var navs = navigator.languages || [navigator.language || "en"];
     for (var i = 0; i < navs.length; i++) {
