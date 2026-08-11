@@ -17,7 +17,6 @@
   ];
   var DEFAULT = "en";
   var STORE = "bl_lang";
-  var REDIR = "bl_redirected";
 
   function has(c) { for (var i = 0; i < LANGS.length; i++) if (LANGS[i].code === c) return true; return false; }
 
@@ -42,8 +41,11 @@
     return base + "/";
   }
 
-  function firstPreferred() {
-    try { var s = localStorage.getItem(STORE); if (s && has(s)) return s; } catch (e) {}
+
+  function storedChoice() {
+    try { var s = localStorage.getItem(STORE); return (s && has(s)) ? s : null; } catch (e) { return null; }
+  }
+  function browserLang() {
     var navs = navigator.languages || [navigator.language || "en"];
     for (var i = 0; i < navs.length; i++) {
       var c = (navs[i] || "").slice(0, 2).toLowerCase();
@@ -51,25 +53,31 @@
     }
     return DEFAULT;
   }
+  // True when the visitor arrived from outside this site (external site, or a
+  // direct/bookmark hit with no referrer). In-site navigation — including a
+  // dropdown switch — is same-origin, so it never counts as an external landing.
+  function externalLanding() {
+    try {
+      if (!document.referrer) return true;
+      return new URL(document.referrer).origin !== location.origin;
+    } catch (e) { return true; }
+  }
 
-  // Back-compat + gentle localisation redirects (JS only; canonical/hreflang keep SEO clean).
+  // Redirects, in priority order. The dropdown ALWAYS wins: choosing a language
+  // stores it (see buildSelector), which permanently disables auto-localisation,
+  // and an in-site switch is never treated as an external landing.
   function maybeRedirect() {
     var L = currentLang(), P = currentPage();
-    // 1) old ?lang=xx links -> clean path
+    // 1) old ?lang=xx links -> the clean path
     try {
       var q = new URLSearchParams(location.search).get("lang");
       if (q) { q = q.toLowerCase().slice(0, 2); if (has(q) && q !== L) { location.replace(pagePath(P, q) + location.hash); return true; } }
     } catch (e) {}
-    // 2) returning/preferred visitor on an English page -> their language (once per session)
-    if (L === DEFAULT) {
-      var pref = firstPreferred();
-      var already;
-      try { already = sessionStorage.getItem(REDIR); } catch (e) {}
-      if (pref && pref !== DEFAULT && !already) {
-        try { sessionStorage.setItem(REDIR, "1"); } catch (e) {}
-        location.replace(pagePath(P, pref) + location.hash);
-        return true;
-      }
+    // 2) first-visit localisation: only on the English page, only for a visitor
+    //    who has never chosen a language AND is landing from outside the site.
+    if (L === DEFAULT && !storedChoice() && externalLanding()) {
+      var pref = browserLang();
+      if (pref !== DEFAULT) { location.replace(pagePath(P, pref) + location.hash); return true; }
     }
     return false;
   }
