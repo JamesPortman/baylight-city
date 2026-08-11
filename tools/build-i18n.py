@@ -86,7 +86,7 @@ def link_page(href):
 def page_path(page, code):
     base = "" if code == "en" else "/" + code
     if page == "prequel":
-        return "/prequel.html" if code == "en" else base + "/prequel/"
+        return "/prequel" if code == "en" else base + "/prequel/"
     return base + "/" if base else "/"
 
 # ---- transforms ------------------------------------------------------------

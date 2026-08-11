@@ -37,7 +37,7 @@
   // Clean URL for a page in a language.
   function pagePath(page, code) {
     var base = (code === DEFAULT) ? "" : "/" + code;
-    if (page === "prequel") return (code === DEFAULT) ? "/prequel.html" : base + "/prequel/";
+    if (page === "prequel") return (code === DEFAULT) ? "/prequel" : base + "/prequel/";
     return base + "/";
   }
 

@@ -1,4 +1,4 @@
-# Language pages are real files (/<lang>/index.html, /<lang>/prequel/index.html),
-# served directly by Cloudflare Pages — no language rewrites needed here.
-# English clean prequel URL:
-/prequel   /prequel.html   200
+# Language pages and /prequel are real files served directly by Cloudflare Pages
+# (clean URLs are automatic: /prequel <- prequel.html, /fr/ <- fr/index.html).
+# No rewrites needed — a /prequel -> /prequel.html rule here causes a redirect loop
+# because Pages also auto-redirects /prequel.html -> /prequel.
