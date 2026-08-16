@@ -68,18 +68,23 @@
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
     backdrop-filter:blur(12px);background:rgba(10,12,14,.72);
     border-bottom:1px solid var(--line);transition:background .3s}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  /* Nav must hold longer translations (FR/ES/PT run ~30% longer than EN) plus
+     the language selector, so: never wrap words, keep a guaranteed gap between
+     items, let the link spacing flex, and drop the links earlier on narrow screens. */
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;
+    gap:20px;max-width:1280px}
   .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;
-    font-size:15px;text-transform:uppercase}
+    font-size:15px;text-transform:uppercase;white-space:nowrap}
   .brand span{color:var(--green)}
-  nav.links{display:flex;gap:30px}
-  nav.links a{font-size:13px;letter-spacing:.06em;color:var(--muted);transition:color .2s}
+  nav.links{display:flex;gap:clamp(14px,1.7vw,30px)}
+  nav.links a{font-size:13px;letter-spacing:.06em;color:var(--muted);transition:color .2s;
+    white-space:nowrap}
   nav.links a:hover{color:var(--ink)}
   .nav-cta{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;
     text-transform:uppercase;border:1px solid var(--green-dim);color:var(--green);
-    padding:9px 16px;border-radius:2px;transition:.2s}
+    padding:9px 16px;border-radius:2px;transition:.2s;white-space:nowrap}
   .nav-cta:hover{background:var(--green);color:#04130a}
-  @media(max-width:780px){nav.links{display:none}}
+  @media(max-width:1040px){nav.links{display:none}}
 
   /* HERO */
   .hero{position:relative;min-height:100vh;display:flex;align-items:center;

@@ -37,11 +37,13 @@
 
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;
     backdrop-filter:blur(12px);background:rgba(10,12,14,.78);border-bottom:1px solid var(--line)}
-  .nav .wrap{max-width:1160px;display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+  .nav .wrap{max-width:1280px;display:flex;align-items:center;justify-content:space-between;
+    height:64px;gap:20px}
+  .brand{font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.14em;font-size:15px;
+    text-transform:uppercase;white-space:nowrap}
   .brand span{color:var(--green)}
   .nav-back{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--muted);transition:color .2s}
+    text-transform:uppercase;color:var(--muted);transition:color .2s;white-space:nowrap}
   .nav-back:hover{color:var(--green)}
 
   .story{padding:130px 0 40px}
