@@ -335,7 +335,7 @@
     <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> EP.01 — "Courtesy Reminder"</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
-        src="https://www.youtube.com/embed/00NYO4fwiT4"
+        src="https://www.youtube.com/embed/00NYO4fwiT4?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
         title="Baylight After Image — Episode 1: Courtesy Reminder"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -345,7 +345,7 @@
     <div class="ep-tag" style="margin-top:44px"><span class="green">●</span> EP.02 — "Bones of the City"</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
-        src="https://www.youtube.com/embed/OYQyulSIhME"
+        src="https://www.youtube.com/embed/OYQyulSIhME?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
         title="Baylight After Image — Episode 2: Bones of the City"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -355,7 +355,7 @@
     <div class="ep-tag" style="margin-top:44px"><span class="green">●</span> EP.03 — "The Vent"</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
-        src="https://www.youtube.com/embed/TbrCjeY2cRc"
+        src="https://www.youtube.com/embed/TbrCjeY2cRc?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
         title="Baylight After Image — Episode 3: The Vent"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -468,18 +468,21 @@
     const btn=form.querySelector('button');
     const email=document.getElementById('email').value;
     const msg=document.getElementById('signupMsg');
-    // Language the visitor is browsing in (set by i18n.js).
+    // Language of THIS page — baked into <html lang> by the pre-render build.
+    // Use the page's language (not a stored dropdown preference) so the message
+    // always matches the page the visitor actually subscribed from.
     let lang='en';
-    try{ lang=(localStorage.getItem('bl_lang')||document.documentElement.lang||'en').slice(0,2); }catch(_){}
+    try{ lang=(document.documentElement.lang||'en').slice(0,2); }catch(_){}
     const MSG={
       en:{t:'> TRANSMITTING…', ok:'✓ VERIFIED / GREEN — check your email to confirm.', err:'⚠ SIGNAL LOST — please try again in a moment.'},
       pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — confira seu e-mail para confirmar.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'},
       es:{t:'> TRANSMITIENDO…', ok:'✓ VERIFICADO / VERDE — revisa tu correo para confirmar.', err:'⚠ SEÑAL PERDIDA — inténtalo de nuevo en un momento.'},
       fr:{t:'> TRANSMISSION…', ok:'✓ VÉRIFIÉ / VERT — vérifiez votre e-mail pour confirmer.', err:'⚠ SIGNAL PERDU — réessayez dans un instant.'},
-      zh:{t:'> 传输中…', ok:'✓ 已验证 / 绿色 —— 请查收邮件以确认。', err:'⚠ 信号丢失 —— 请稍后再试。'}
+      zh:{t:'> 传输中…', ok:'✓ 已验证 / 绿色 —— 请查收邮件以确认。', err:'⚠ 信号丢失 —— 请稍后再试。'},
+      fa:{t:'> در حالِ ارسال…', ok:'✓ تأییدشده / سبز — برای تأیید، ایمیلِ خود را بررسی کنید.', err:'⚠ سیگنال قطع شد — لطفاً چند لحظه بعد دوباره تلاش کنید.'}
     };
     const m=MSG[lang]||MSG.en;
-    const langName={en:'English', pt:'Português', es:'Español', fr:'Français', zh:'中文'}[lang]||lang;
+    const langName={en:'English', pt:'Português', es:'Español', fr:'Français', zh:'中文', fa:'فارسی'}[lang]||lang;
     msg.style.color='var(--green)';
     msg.textContent=m.t;
     btn.disabled=true;
