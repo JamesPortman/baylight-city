@@ -197,7 +197,8 @@
   .signup input{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--ink);
     padding:15px 18px;border-radius:3px;font-family:'Inter';font-size:15px}
   .signup input:focus{outline:none;border-color:var(--green-dim)}
-  .signup .msg{margin-top:16px;font-family:'JetBrains Mono';font-size:13px;color:var(--green);min-height:18px}
+  .signup .msg{margin-top:16px;font-family:'JetBrains Mono';font-size:13px;color:var(--green);
+    min-height:18px;line-height:1.75;max-width:60ch;margin-left:auto;margin-right:auto}
   .consent{font-size:12px;color:var(--muted);margin-top:18px;font-family:'JetBrains Mono';letter-spacing:.03em}
   @media(max-width:560px){.signup form{flex-direction:column}}
 
@@ -474,12 +475,15 @@
     let lang='en';
     try{ lang=(document.documentElement.lang||'en').slice(0,2); }catch(_){}
     const MSG={
-      en:{t:'> TRANSMITTING…', ok:'✓ VERIFIED / GREEN — check your email to confirm.', err:'⚠ SIGNAL LOST — please try again in a moment.'},
-      pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — confira seu e-mail para confirmar.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'},
-      es:{t:'> TRANSMITIENDO…', ok:'✓ VERIFICADO / VERDE — revisa tu correo para confirmar.', err:'⚠ SEÑAL PERDIDA — inténtalo de nuevo en un momento.'},
-      fr:{t:'> TRANSMISSION…', ok:'✓ VÉRIFIÉ / VERT — vérifiez votre e-mail pour confirmer.', err:'⚠ SIGNAL PERDU — réessayez dans un instant.'},
-      zh:{t:'> 传输中…', ok:'✓ 已验证 / 绿色 —— 请查收邮件以确认。', err:'⚠ 信号丢失 —— 请稍后再试。'},
-      fa:{t:'> در حالِ ارسال…', ok:'✓ تأییدشده / سبز — برای تأیید، ایمیلِ خود را بررسی کنید.', err:'⚠ سیگنال قطع شد — لطفاً چند لحظه بعد دوباره تلاش کنید.'}
+      // The confirmation email's subject line is English for every language —
+      // it is what the reader will literally see in their inbox, so it is NOT
+      // translated here. Naming the sender + subject measurably lifts confirms.
+      en:{t:'> TRANSMITTING…', ok:'✓ VERIFIED / GREEN — one step left: open the email from james@portman.ca titled “One step to enter Baylight” and tap confirm. Not there? Check spam.', err:'⚠ SIGNAL LOST — please try again in a moment.'},
+      pt:{t:'> TRANSMITINDO…', ok:'✓ VERIFICADO / VERDE — falta um passo: abra o e-mail de james@portman.ca com o assunto “One step to enter Baylight” e confirme. Não encontrou? Veja o spam.', err:'⚠ SINAL PERDIDO — tente novamente em instantes.'},
+      es:{t:'> TRANSMITIENDO…', ok:'✓ VERIFICADO / VERDE — falta un paso: abre el correo de james@portman.ca con el asunto “One step to enter Baylight” y confirma. ¿No lo ves? Revisa el spam.', err:'⚠ SEÑAL PERDIDA — inténtalo de nuevo en un momento.'},
+      fr:{t:'> TRANSMISSION…', ok:'✓ VÉRIFIÉ / VERT — une étape reste : ouvrez l’e-mail de james@portman.ca intitulé « One step to enter Baylight » et confirmez. Rien reçu ? Vérifiez les spams.', err:'⚠ SIGNAL PERDU — réessayez dans un instant.'},
+      zh:{t:'> 传输中…', ok:'✓ 已验证 / 绿色 —— 还差一步：打开来自 james@portman.ca、主题为“One step to enter Baylight”的邮件并点击确认。没看到？请查看垃圾邮件。', err:'⚠ 信号丢失 —— 请稍后再试。'},
+      fa:{t:'> در حالِ ارسال…', ok:'✓ تأییدشده / سبز — یک قدم مانده: ایمیلِ james@portman.ca با موضوعِ «One step to enter Baylight» را باز کنید و تأیید را بزنید. نبود؟ پوشه‌ی اسپم را ببینید.', err:'⚠ سیگنال قطع شد — لطفاً چند لحظه بعد دوباره تلاش کنید.'}
     };
     const m=MSG[lang]||MSG.en;
     const langName={en:'English', pt:'Português', es:'Español', fr:'Français', zh:'中文', fa:'فارسی'}[lang]||lang;
