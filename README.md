@@ -27,7 +27,15 @@ lives in [`assets/`](assets/).
 - `admin/` — the stats dashboard, which calls `/api/stats` with the password you
   enter.
 - `_headers` — security headers for every page (`nosniff`, `Referrer-Policy`,
-  `X-Frame-Options: SAMEORIGIN`, `Permissions-Policy`); no CSP yet.
+  `X-Frame-Options: SAMEORIGIN`, `Permissions-Policy`) and a
+  Content-Security-Policy with `script-src 'self'`: no inline scripts or
+  `on*=` handlers anywhere. Page behaviour lives in `assets/js/site.js`, the
+  pageview beacon in `assets/js/track.js`, and the dashboard in
+  `admin/admin.js` (with Chart.js vendored in `admin/vendor/` rather than
+  loaded from a CDN). If you add a third-party embed or endpoint, add its
+  origin to the policy.
+- `tools/check-site.py` — run by CI on every push: fails on inline scripts or
+  handlers, missing script files, or a policy that allows inline script.
 - `_redirects` — intentionally empty of rules; Cloudflare Pages serves clean URLs
   on its own.
 

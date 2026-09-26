@@ -56,16 +56,7 @@
   <p class="mono">&gt; THRESHOLD NOT FOUND. RETURNING TO A KNOWN EXIT.</p>
   <a class="btn" href="/">Back to Baylight</a>
 </div>
-<script>
-  // First-party pageview tracking (no cookies). Fire-and-forget.
-  (function(){try{
-    if(location.pathname.indexOf('/admin')===0)return;
-    var p={path:location.pathname,referrer:document.referrer||''};
-    var b=JSON.stringify(p);
-    if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([b],{type:'application/json'}));}
-    else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:b,keepalive:true});}
-  }catch(e){}})();
-</script>
+<script src="/assets/js/track.js?v=1"></script>
 <script src="/i18n.js" defer></script>
 </body>
 </html>
