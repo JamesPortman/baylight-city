@@ -11,6 +11,22 @@ const CREATE = `CREATE TABLE IF NOT EXISTS pageviews (
   visitor TEXT
 )`;
 
+let schemaReady = false; // run CREATE/ALTER once per isolate, not per request
+
+// Constant-time string comparison: hash both sides to fixed-length digests,
+// then XOR every byte so timing doesn't depend on where they differ.
+async function safeEqual(a, b) {
+  const enc = new TextEncoder();
+  const [da, db] = await Promise.all([
+    crypto.subtle.digest("SHA-256", enc.encode(a)),
+    crypto.subtle.digest("SHA-256", enc.encode(b)),
+  ]);
+  const x = new Uint8Array(da), y = new Uint8Array(db);
+  let diff = 0;
+  for (let i = 0; i < x.length; i++) diff |= x[i] ^ y[i];
+  return diff === 0;
+}
+
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
     status,
@@ -21,13 +37,19 @@ function json(obj, status = 200) {
 export async function onRequestGet(context) {
   const { request, env } = context;
   const url = new URL(request.url);
-  const key = request.headers.get("x-admin-key") || url.searchParams.get("key") || "";
+  const key = request.headers.get("x-admin-key") || "";
 
-  if (!env.ADMIN_PASSWORD || key !== env.ADMIN_PASSWORD) return json({ error: "unauthorized" }, 401);
+  // Fail closed: no configured password means no access.
+  if (!env.ADMIN_PASSWORD || !(await safeEqual(key, env.ADMIN_PASSWORD))) {
+    return json({ error: "unauthorized" }, 401);
+  }
   if (!env.DB) return json({ error: "database not configured" }, 500);
 
-  await env.DB.prepare(CREATE).run();
-  try { await env.DB.prepare("ALTER TABLE pageviews ADD COLUMN visitor TEXT").run(); } catch (_) {}
+  if (!schemaReady) {
+    await env.DB.prepare(CREATE).run();
+    try { await env.DB.prepare("ALTER TABLE pageviews ADD COLUMN visitor TEXT").run(); } catch (_) {}
+    schemaReady = true;
+  }
 
   const allowed = [7, 30, 90, 0];
   let days = parseInt(url.searchParams.get("days") || "30", 10);
