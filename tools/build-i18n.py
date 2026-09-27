@@ -90,11 +90,34 @@ def page_path(page, code):
     return base + "/" if base else "/"
 
 # ---- transforms ------------------------------------------------------------
+# A paragraph with inline markup (<em>s'il vous plaît</em>) is split into
+# several text runs, and a translation rarely keeps the same words in the same
+# order. So the dictionaries also carry whole-block keys: the block's text with
+# its inline tags removed. When one matches, the whole block is replaced with
+# the translation, as plain text.
+BLOCK_RE = re.compile(r'(<(p|h[1-6]|li|blockquote|figcaption)\b[^>]*>)(.*?)(</\2>)', re.S | re.I)
+INLINE_RE = re.compile(r'</?(em|i|strong|b|span)\b[^>]*>', re.I)
+
+def _blocks(body, dct):
+    def fix(m):
+        inner = m.group(3)
+        plain = INLINE_RE.sub("", inner)
+        if plain == inner or "<" in plain:
+            return m.group(0)
+        key = re.sub(r'\s+', ' ', html.unescape(plain)).strip()
+        v = dct.get(key)
+        if v is None:
+            return m.group(0)
+        lead = re.match(r'\s*', inner).group(0)
+        trail = re.search(r'\s*$', inner).group(0)
+        return m.group(1) + lead + html.escape(v, quote=False) + trail + m.group(4)
+    return BLOCK_RE.sub(fix, body)
+
 def translate_body(s, dct):
     lo = s.lower()
     b0 = lo.find("<body"); b0 = s.find(">", b0) + 1
     b1 = lo.find("</body>")
-    head, body, tail = s[:b0], s[b0:b1], s[b1:]
+    head, body, tail = s[:b0], _blocks(s[b0:b1], dct), s[b1:]
     out = []; pos = 0; skip = 0
     for m in re.finditer(r'<[^>]+>', body, re.S):
         text = body[pos:m.start()]; tag = m.group(0); low = tag.lower()

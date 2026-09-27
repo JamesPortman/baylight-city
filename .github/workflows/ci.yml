@@ -34,3 +34,11 @@ jobs:
 
       - name: Translation dictionaries are valid JSON
         run: for f in i18n/*.json; do python3 -m json.tool "$f" > /dev/null; done
+
+      - name: Translated pages match a fresh build
+        run: |
+          python3 tools/build-i18n.py
+          git diff --exit-code -- '*/index.html' '*/prequel/index.html' || {
+            echo "::error::Translated pages are out of date. Run python3 tools/build-i18n.py and commit the result."
+            exit 1
+          }

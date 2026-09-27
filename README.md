@@ -15,7 +15,9 @@ lives in [`assets/`](assets/).
 - `index.html`, `prequel.html` — the English pages, written by hand.
 - `es/`, `fa/`, `fr/`, `pt/`, `zh/` — translated pages generated from the English
   ones and the dictionaries in `i18n/` by `python3 tools/build-i18n.py`. Re-run it
-  after editing English content or a dictionary.
+  after editing English content or a dictionary; CI fails if the committed pages
+  don't match a fresh build. A paragraph with inline markup is keyed by its whole
+  text, tags removed, and its translation replaces the paragraph as plain text.
 - `functions/api/` — Cloudflare Pages Functions for cookie-free analytics in a D1
   database (binding `DB`):
   - `POST /api/track` records a pageview, but only for the site's real pages
