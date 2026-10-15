@@ -1,4 +1,4 @@
-// POST /api/track — records one pageview into the D1 database.
+// POST /api/track — records one pageview or visitor action into the D1 database.
 // Cookie-free. For unique-visitor counting we store a daily-rotating one-way
 // hash of (date + IP + user-agent); the raw IP is never stored, and the hash
 // changes every day so it can't be used to follow someone over time.
@@ -13,7 +13,27 @@ const CREATE = `CREATE TABLE IF NOT EXISTS pageviews (
   visitor TEXT
 )`;
 
-let schemaReady = false; // CREATE TABLE once per isolate, not on every pageview
+// Columns added after the table first shipped. ALTER fails harmlessly once a
+// column exists. Keep in step with the same list in stats.js.
+const MIGRATIONS = [
+  "ALTER TABLE pageviews ADD COLUMN visitor TEXT",
+  "ALTER TABLE pageviews ADD COLUMN kind TEXT NOT NULL DEFAULT 'pageview'",
+  "ALTER TABLE pageviews ADD COLUMN action TEXT",
+  "ALTER TABLE pageviews ADD COLUMN target TEXT",
+  "ALTER TABLE pageviews ADD COLUMN browser TEXT",
+  "ALTER TABLE pageviews ADD COLUMN city TEXT",
+];
+
+let schemaReady = false; // run CREATE/ALTER once per isolate, not on every event
+
+async function ensureSchema(db) {
+  if (schemaReady) return;
+  await db.prepare(CREATE).run();
+  for (const sql of MIGRATIONS) {
+    try { await db.prepare(sql).run(); } catch (_) {}
+  }
+  schemaReady = true;
+}
 
 // Only real site pages are recorded, so the endpoint can't be used to write
 // arbitrary strings into the dashboard. Mirrors the files in the repo:
@@ -28,7 +48,41 @@ for (const l of LANGS) {
   }
 }
 
-const MAX_BODY = 2048; // a real beacon is ~100 chars
+// Visitor actions sent by assets/js/track.js, each with the only shape of
+// target it may carry. Anything else is dropped.
+const ACTIONS = {
+  pdf_open: /^[a-z0-9-]{1,80}\.pdf$/,
+  audio_play: /^[a-z0-9-]{1,80}\.mp3$/,
+  video_play: /^[a-z0-9-]{1,80}\.mp4$/,
+  outbound_click: /^[a-z0-9.-]{1,100}$/,
+  signup_submit: /^$/,
+};
+
+const MAX_BODY = 2048; // a real beacon is ~150 chars
+
+// Crawlers, link previews and scripted clients — not people.
+function isBot(ua) {
+  const s = (ua || "").toLowerCase();
+  if (!s) return true;
+  return /bot|crawler|spider|crawl|slurp|bingpreview|facebookexternalhit|facebot|embedly|quora link preview|outbrain|pinterest\/|developers\.google|google-inspectiontool|chrome-lighthouse|headlesschrome|phantomjs|puppeteer|playwright|python-requests|axios|curl|wget|node-fetch|go-http-client|java\/|httpclient|monitoring|uptimerobot|pingdom|gtmetrix|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|amazonbot|applebot|yandex|baiduspider|duckduckbot|whatsapp|telegrambot|discordbot|slackbot|twitterbot|linkedinbot|preview/.test(s);
+}
+
+// Coarse buckets only: enough for a dashboard, not a fingerprint.
+function parseUA(ua) {
+  const s = (ua || "").toLowerCase();
+  let device = "desktop";
+  if (/ipad|tablet|(android(?!.*mobile))|kindle|silk|playbook/.test(s)) device = "tablet";
+  else if (/mobi|iphone|ipod|android.*mobile|windows phone|blackberry|bb10|opera mini|iemobile/.test(s)) device = "mobile";
+
+  let browser = "Other";
+  if (/edg(a|ios|e)?\//.test(s)) browser = "Edge";
+  else if (/opr\/|opera/.test(s)) browser = "Opera";
+  else if (/samsungbrowser/.test(s)) browser = "Samsung Internet";
+  else if (/firefox|fxios/.test(s)) browser = "Firefox";
+  else if (/chrome|crios|chromium/.test(s)) browser = "Chrome";
+  else if (/safari/.test(s)) browser = "Safari";
+  return { device, browser };
+}
 
 async function visitorHash(request) {
   const ip = request.headers.get("cf-connecting-ip") || "";
@@ -41,46 +95,49 @@ async function visitorHash(request) {
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  if (!env.DB) return new Response(null, { status: 204 });
+  const done = () => new Response(null, { status: 204 });
+  if (!env.DB) return done();
 
-  if (Number(request.headers.get("content-length") || 0) > MAX_BODY) return new Response(null, { status: 204 });
+  if (Number(request.headers.get("content-length") || 0) > MAX_BODY) return done();
 
   let body = {};
   try {
     const text = await request.text();
-    if (text.length > MAX_BODY) return new Response(null, { status: 204 });
+    if (text.length > MAX_BODY) return done();
     body = JSON.parse(text) || {};
   } catch (_) {}
 
   const path = body && typeof body.path === "string" ? body.path : "";
-  if (!ALLOWED_PATHS.has(path)) return new Response(null, { status: 204 }); // unknown path: drop silently
+  if (!ALLOWED_PATHS.has(path)) return done(); // unknown path: drop silently
 
-  let referrer = "";
-  try { referrer = typeof body.referrer === "string" && body.referrer ? new URL(body.referrer).hostname.slice(0, 253) : ""; } catch (_) {}
-
-  const country = (request.headers.get("cf-ipcountry") || "").slice(0, 8);
   const ua = request.headers.get("user-agent") || "";
-  const device = /Mobi|Android|iPhone|iPad|iPod/i.test(ua) ? "mobile" : "desktop";
+  if (isBot(ua)) return done();
+
+  const kind = body.kind === "action" ? "action" : "pageview";
+  let action = null, target = null, referrer = "";
+  if (kind === "action") {
+    action = typeof body.action === "string" ? body.action : "";
+    target = typeof body.target === "string" ? body.target.toLowerCase() : "";
+    const shape = Object.prototype.hasOwnProperty.call(ACTIONS, action) ? ACTIONS[action] : null;
+    if (!shape || !shape.test(target)) return done();
+    target = target || null;
+  } else {
+    try { referrer = typeof body.referrer === "string" && body.referrer ? new URL(body.referrer).hostname.slice(0, 253) : ""; } catch (_) {}
+  }
+
+  const cf = request.cf || {};
+  const country = (request.headers.get("cf-ipcountry") || cf.country || "").slice(0, 8);
+  const city = typeof cf.city === "string" ? cf.city.slice(0, 80) : "";
+  const { device, browser } = parseUA(ua);
   const visitor = await visitorHash(request);
 
-  const insert = () =>
-    env.DB.prepare("INSERT INTO pageviews (ts, path, referrer, country, device, visitor) VALUES (?, ?, ?, ?, ?, ?)")
-      .bind(Date.now(), path, referrer, country, device, visitor).run();
-
   try {
-    if (!schemaReady) {
-      await env.DB.prepare(CREATE).run();
-      schemaReady = true;
-    }
-    try {
-      await insert();
-    } catch (_) {
-      // Older DB created before the visitor column existed — add it once, then retry.
-      try { await env.DB.prepare("ALTER TABLE pageviews ADD COLUMN visitor TEXT").run(); } catch (_) {}
-      await insert();
-    }
+    await ensureSchema(env.DB);
+    await env.DB.prepare(
+      "INSERT INTO pageviews (ts, path, referrer, country, device, visitor, kind, action, target, browser, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    ).bind(Date.now(), path, referrer, country, device, visitor, kind, action, target, browser, city).run();
   } catch (_) {
-    return new Response(null, { status: 204 }); // never break the page over analytics
+    // never break the page over analytics
   }
-  return new Response(null, { status: 204 });
+  return done();
 }

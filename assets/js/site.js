@@ -66,6 +66,7 @@
       msg.style.color='var(--green)';
       msg.textContent=m.ok;
       form.reset();
+      if(window.blTrack) window.blTrack('signup_submit');
     }catch(err){
       msg.style.color='#f2643b';
       msg.textContent=m.err;
