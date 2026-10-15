@@ -76,6 +76,8 @@ export async function onRequestGet(context) {
   const span = days * 24 * 60 * 60 * 1000;
   const since = days > 0 ? now - span : 0;
   const prevSince = days > 0 ? since - span : 0;
+  // The chart's 7-day average needs the six days before the range too.
+  const trendSince = days > 0 ? since - 6 * 24 * 60 * 60 * 1000 : 0;
 
   const q = (sql, ...args) => DB.prepare(sql).bind(...args);
   const [
@@ -89,7 +91,7 @@ export async function onRequestGet(context) {
     q("SELECT COUNT(DISTINCT visitor) AS c FROM pageviews WHERE ts >= ? AND ts < ? AND visitor IS NOT NULL", prevSince, since),
     q(`SELECT COUNT(*) AS c FROM pageviews WHERE ts >= ? AND ${ACT}`, since),
     q(`SELECT COUNT(*) AS c FROM pageviews WHERE ts >= ? AND ts < ? AND ${ACT}`, prevSince, since),
-    q(`SELECT strftime('%Y-%m-%d', ts/1000, 'unixepoch') AS day, SUM(CASE WHEN ${PV} THEN 1 ELSE 0 END) AS views, COUNT(DISTINCT visitor) AS visitors FROM pageviews WHERE ts >= ? GROUP BY day ORDER BY day`, since),
+    q(`SELECT strftime('%Y-%m-%d', ts/1000, 'unixepoch') AS day, SUM(CASE WHEN ${PV} THEN 1 ELSE 0 END) AS views, COUNT(DISTINCT visitor) AS visitors FROM pageviews WHERE ts >= ? GROUP BY day ORDER BY day`, trendSince),
     q(`SELECT path, COUNT(*) AS c FROM pageviews WHERE ts >= ? AND ${PV} GROUP BY path ORDER BY c DESC LIMIT 10`, since),
     q(`SELECT ${LANG} AS lang, COUNT(*) AS c FROM pageviews WHERE ts >= ? AND ${PV} GROUP BY lang ORDER BY c DESC`, since),
     q(`SELECT action, COUNT(*) AS c FROM pageviews WHERE ts >= ? AND ${ACT} GROUP BY action ORDER BY c DESC`, since),
