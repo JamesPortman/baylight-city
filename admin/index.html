@@ -41,6 +41,26 @@
   select:focus{outline:none;border-color:var(--green-dim)}
   .refresh{color:var(--muted)}
   .refresh:hover{border-color:var(--green-dim);color:var(--green)}
+  .card .delta{font-family:'JetBrains Mono';font-size:11px;margin-top:4px;color:var(--muted)}
+  .card .delta.up{color:var(--green)}
+  .card .delta.down{color:#f2643b}
+  td.bar{position:relative}
+  td.bar .fill{position:absolute;left:0;top:5px;bottom:5px;background:rgba(57,240,138,.10);border-radius:3px;z-index:0}
+  td.bar span{position:relative;z-index:1;padding-left:8px}
+  .chartbox{position:relative;height:280px}
+  @media(max-width:680px){.chartbox{height:220px}}
+  .donut{max-width:220px;margin:0 auto 14px}
+  .minor{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 4px}
+  .tag{display:inline-block;font-family:'JetBrains Mono';font-size:11px;padding:2px 6px;border-radius:3px;background:rgba(57,240,138,.12);color:var(--green)}
+  .scroll{overflow-x:auto}
+  .recent td{padding-right:14px;white-space:nowrap;font-size:13px}
+  .recent th{text-align:left;font-family:'JetBrains Mono';font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 14px 8px 0;border-bottom:1px solid var(--line)}
+  .linkbtn{background:none;border:0;color:var(--green);font-family:'JetBrains Mono';font-size:12px;cursor:pointer;margin-top:12px;padding:0}
+  .linkbtn:hover{text-decoration:underline}
+  .note{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .btn.inline{width:auto;padding:10px 18px}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn.ghost:hover{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -72,27 +92,51 @@
     </div>
 
     <div class="cards">
-      <div class="card"><div class="label">Unique Visitors</div><div class="num" id="m-unique">—</div></div>
-      <div class="card"><div class="label">Page Views</div><div class="num" id="m-views">—</div></div>
-      <div class="card"><div class="label">Mobile</div><div class="num" id="m-mob">—</div></div>
-      <div class="card"><div class="label">Desktop</div><div class="num" id="m-desk">—</div></div>
+      <div class="card"><div class="label">Unique Visitors</div><div class="num" id="m-unique">—</div><div class="delta" id="d-unique"></div></div>
+      <div class="card"><div class="label">Page Views</div><div class="num" id="m-views">—</div><div class="delta" id="d-views"></div></div>
+      <div class="card"><div class="label">Actions</div><div class="num" id="m-actions">—</div><div class="delta" id="d-actions"></div></div>
     </div>
 
     <div class="panel">
       <h2 id="chart-title">Visitors &amp; views</h2>
-      <canvas id="chart" height="90"></canvas>
+      <div class="chartbox"><canvas id="chart"></canvas></div>
     </div>
 
     <div class="two">
       <div class="panel"><h2>Top Pages</h2><table id="t-paths"></table></div>
-      <div class="panel"><h2>Referrers</h2><table id="t-ref"></table></div>
+      <div class="panel"><h2>Languages</h2><table id="t-lang"></table></div>
     </div>
-    <div class="panel"><h2>Top Countries</h2><table id="t-country"></table></div>
+    <div class="two">
+      <div class="panel"><h2>Visitor Actions</h2><table id="t-actions"></table></div>
+      <div class="panel">
+        <h2>Devices</h2>
+        <div class="donut"><canvas id="devices"></canvas></div>
+        <div class="minor">Browsers</div>
+        <table id="t-browsers"></table>
+      </div>
+    </div>
+    <div class="two">
+      <div class="panel"><h2>Referrers</h2><table id="t-ref"></table></div>
+      <div class="panel"><h2>Top Countries</h2><table id="t-country"></table></div>
+    </div>
+
+    <div class="panel">
+      <h2>Recent Activity</h2>
+      <div class="scroll"><table class="recent" id="t-recent"></table></div>
+      <button class="linkbtn hidden" id="more"></button>
+    </div>
+
+    <div class="panel">
+      <h2>This Browser</h2>
+      <p class="note">Your own visits would otherwise show up as real traffic. Turning counting off here applies to this browser only (it's remembered in the browser, not by a cookie), so do it once on each browser and device you use to look at the site. Visits already recorded stay in the numbers.</p>
+      <p class="note" id="ex-status"></p>
+      <button class="btn inline" id="ex-toggle"></button>
+    </div>
   </div>
 
 </div>
 
 <script src="/admin/vendor/chart-4.4.1.umd.min.js"></script>
-<script src="/admin/admin.js?v=1"></script>
+<script src="/admin/admin.js?v=2"></script>
 </body>
 </html>
