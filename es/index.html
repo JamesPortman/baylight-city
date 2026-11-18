@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Baylight After Image — una novela de James Portman</title>
-<meta name="description" content="La ciudad no castiga. Ayuda. Un thriller de vigilancia de un futuro cercano, de James Portman — lee la novela, escucha el audiolibro, mira el microdrama." />
+<meta name="description" content="La ciudad no castiga. Ayuda. Un thriller de vigilancia de un futuro cercano, de James Portman — lee la novela, escucha el audiolibro, mira la película." />
 <meta property="og:title" content="Baylight After Image" />
 <meta property="og:description" content="La ciudad no castiga. Ayuda." />
 <meta property="og:image" content="https://baylight.city/assets/social-card.jpg" />
@@ -183,13 +183,17 @@
   .player .note{font-size:13px;color:var(--muted);margin-top:14px}
   @media(max-width:780px){.audio .grid{grid-template-columns:1fr;gap:30px}}
 
-  /* MICRODRAMA */
+  /* FILM */
   .video-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
     box-shadow:0 30px 80px rgba(0,0,0,.6);margin-top:40px;background:#000;
     aspect-ratio:16/9}
   .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
   .ep-tag{display:inline-flex;gap:8px;align-items:center;margin-top:18px;color:var(--muted);
     font-family:'JetBrains Mono';font-size:13px}
+  .watch-more{display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:start;margin-top:44px}
+  .watch-more .ep-tag{margin-top:0}
+  .video-frame.vertical{aspect-ratio:9/16;max-width:280px}
+  @media(max-width:780px){.watch-more{grid-template-columns:1fr}.watch-more .short{max-width:280px;margin:0 auto;width:100%}}
 
   /* CHAPTERS */
   .chapters{background:var(--bg-2);border-top:1px solid var(--line)}
@@ -235,7 +239,7 @@
       <a href="#story">La Ciudad</a>
       <a href="#formats">Experiencia</a>
       <a href="#audio">Audiolibro</a>
-      <a href="#watch">Microdrama</a>
+      <a href="#watch">Película</a>
       <a href="#prequel">Precuela</a>
       <a href="#signup">Novedades</a>
     </nav>
@@ -256,7 +260,7 @@
       <p class="lede">Un thriller de futuro cercano donde la seguridad es la vigilancia, el consentimiento es la jaula, y una mujer aprende a leer el sistema igual que él lee a todos los demás.</p>
       <div class="cta-row">
         <a href="#formats" class="btn btn-primary">Leer la Novela</a>
-        <a href="#watch" class="btn btn-ghost">Ver la Serie</a>
+        <a href="#watch" class="btn btn-ghost">Ver la Película</a>
       </div>
     </div>
     <div class="cover-wrap">
@@ -274,7 +278,7 @@
     <p class="first">A las 05:12 la ciudad todavía finge estar en calma. Los halos de los relojes parpadean en verde en suaves oleadas. Las flechas del suelo cambian en tiempo real, guiando los cuerpos hacia el corredor más barato, el corredor menos arriesgado — el corredor que hace feliz al modelo. Esto es Baylight: un sistema que nunca alza la voz, nunca hace un arresto y nunca deja de vigilar. No castiga.  <em>Ayuda</em>.</p>
     <div class="pull">&gt; UMBRALES. COLAS. CONOS DE COBERTURA. SALIDAS.<br>&gt; Ella lee el mundo como lo hace Baylight.</div>
     <p>Izzy atraviesa el subterráneo bajo un nombre prestado, la pantalla del reloj apagada, los movimientos limpios. Sabe lo que cuesta la luz verde — y lo que le espera a cualquiera a quien la ciudad decide ayudar en silencio un poco de más. Cuando el consentimiento se vuelve protocolo y la privacidad se vuelve garantía, la única salida es entender la máquina mejor que quienes la construyeron.</p>
-    <p><strong>Baylight After Image</strong> es una historia sobre la arquitectura sutil del control — contada en tres formas: una novela, un audiolibro y una serie de microdrama.</p>
+    <p><strong>Baylight After Image</strong> es una historia sobre la arquitectura sutil del control — contada en tres formas: una novela, un audiolibro y una película.</p>
   </div>
 </section>
 
@@ -298,10 +302,10 @@
         <a href="#audio" class="link">Escuchar Ahora →</a>
       </div>
       <div class="card reveal">
-        <div class="num">03 / MICRODRAMA</div>
+        <div class="num">03 / PELÍCULA</div>
         <h3>La Pantalla</h3>
-        <p>Una serie en formato vertical que adapta el mundo episodio a episodio. Los nuevos episodios se añaden a medida que se estrenan.</p>
-        <a href="#watch" class="link">Ver la Serie →</a>
+        <p>La película de Baylight, con su tráiler oficial y un corto vertical. Los tres están en YouTube.</p>
+        <a href="#watch" class="link">Ver la Película →</a>
       </div>
     </div>
   </div>
@@ -341,27 +345,53 @@
   </div>
 </section>
 
-<!-- MICRODRAMA -->
+<!-- FILM -->
 <section id="watch">
   <div class="wrap">
-    <div class="eyebrow">Microdrama</div>
-    <h2 class="sec">La Serie</h2>
-    <p class="sec-lead">El mundo de Baylight, en pantalla — una adaptación episodio a episodio.</p>
+    <div class="eyebrow">Película</div>
+    <h2 class="sec">En Pantalla</h2>
+    <p class="sec-lead">Baylight After Image como película, con su tráiler oficial y un corto vertical.</p>
 
-    <!-- The series plays from the YouTube playlist, so new episodes added
-         to it appear here without a site change. To switch playlists,
-         replace the ID after list= in both URLs below. -->
-    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> Serie completa — lista de reproducción</div>
+    <!-- The three videos on youtube.com/@baylightcity. To swap one, replace its
+         ID after /embed/ below. -->
+    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> La película</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
         loading="lazy"
-        src="https://www.youtube.com/embed/videoseries?list=PLbLUaN-XA2Lo&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
-        title="Baylight After Image — the full series playlist"
+        src="https://www.youtube.com/embed/kSKY7h-ahDo?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;iv_load_policy=3"
+        title="Baylight: After Image — the film"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </div>
-    <a href="https://www.youtube.com/playlist?list=PLbLUaN-XA2Lo" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:18px">Abrir la lista en YouTube →</a>
+
+    <div class="watch-more">
+      <div>
+        <div class="ep-tag"><span class="green">●</span> Tráiler oficial</div>
+        <div class="video-frame" style="margin-top:12px">
+      <iframe
+        loading="lazy"
+        src="https://www.youtube.com/embed/B6Jmwlt2udc?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;iv_load_policy=3"
+        title="Baylight: After Image — official trailer"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+      </div>
+      <div class="short">
+        <div class="ep-tag"><span class="green">●</span> Corto vertical</div>
+        <div class="video-frame vertical" style="margin-top:12px">
+      <iframe
+        loading="lazy"
+        src="https://www.youtube.com/embed/2IA3N-QaJcE?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;iv_load_policy=3"
+        title="The city doesn't arrest you. It bills you. — a Baylight short"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/@baylightcity" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:24px">Baylight en YouTube →</a>
   </div>
 </section>
 
@@ -423,7 +453,7 @@
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center">Quédate En Verde</div>
     <h2 class="sec">Recibe Avisos</h2>
-    <p class="sec-lead" style="margin:0 auto">Nuevos capítulos, nuevos episodios y noticias de lanzamiento del mundo de Baylight. Sin ruido — solo señal.</p>
+    <p class="sec-lead" style="margin:0 auto">Nuevos capítulos, nuevos videos y noticias de lanzamiento del mundo de Baylight. Sin ruido — solo señal.</p>
     <form id="signupForm">
       <input type="email" id="email" placeholder="your@email.com" required aria-label="Email address" />
       <button type="submit" class="btn btn-primary">Suscribirse</button>
@@ -436,7 +466,7 @@
 <footer>
   <div class="wrap">
     <div class="brand">BAYLIGHT <span class="green">·</span> AFTER IMAGE</div>
-    <div class="meta">Una novela, audiolibro y microdrama de James Portman · © 2026 James Portman</div>
+    <div class="meta">Una novela, audiolibro y película de James Portman · © 2026 James Portman</div>
   </div>
 </footer>
 
