@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Baylight After Image — رمانی از جیمز پورتمن</title>
-<meta name="description" content="شهر مجازات نمی‌کند. کمک می‌کند. یک تریلرِ نظارتیِ آینده‌ی نزدیک از جیمز پورتمن — رمان را بخوانید، کتابِ صوتی را بشنوید، میکرودراما را تماشا کنید." />
+<meta name="description" content="شهر مجازات نمی‌کند. کمک می‌کند. یک تریلرِ نظارتیِ آینده‌ی نزدیک از جیمز پورتمن — رمان را بخوانید، کتابِ صوتی را بشنوید، فیلم را تماشا کنید." />
 <meta property="og:title" content="Baylight After Image" />
 <meta property="og:description" content="شهر مجازات نمی‌کند. کمک می‌کند." />
 <meta property="og:image" content="https://baylight.city/assets/social-card.jpg" />
@@ -183,13 +183,19 @@
   .player .note{font-size:13px;color:var(--muted);margin-top:14px}
   @media(max-width:780px){.audio .grid{grid-template-columns:1fr;gap:30px}}
 
-  /* MICRODRAMA */
+  /* FILM */
   .video-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
     box-shadow:0 30px 80px rgba(0,0,0,.6);margin-top:40px;background:#000;
     aspect-ratio:16/9}
   .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
   .ep-tag{display:inline-flex;gap:8px;align-items:center;margin-top:18px;color:var(--muted);
     font-family:'JetBrains Mono';font-size:13px}
+  /* The trailer (16:9) beside the vertical short (9:16) at the same height:
+     equal heights need widths in the ratio (16/9)^2, i.e. 256:81. */
+  .clips{display:grid;grid-template-columns:256fr 81fr;gap:24px;margin-top:40px;align-items:start}
+  .clips .video-frame{margin-top:12px}
+  .video-frame.vertical{aspect-ratio:9/16}
+  @media (max-width:700px){.clips{grid-template-columns:1fr}.video-frame.vertical{max-width:340px}}
 
   /* CHAPTERS */
   .chapters{background:var(--bg-2);border-top:1px solid var(--line)}
@@ -236,7 +242,7 @@
       <a href="#story">شهر</a>
       <a href="#formats">تجربه</a>
       <a href="#audio">کتاب صوتی</a>
-      <a href="#watch">میکرودراما</a>
+      <a href="#watch">فیلم</a>
       <a href="#prequel">پیش‌درآمد</a>
       <a href="#signup">به‌روزرسانی‌ها</a>
     </nav>
@@ -257,7 +263,7 @@
       <p class="lede">تریلری در آینده‌ای نزدیک، جایی که امنیت همان نظارت است، رضایت همان قفس، و زنی می‌آموزد سیستم را همان‌گونه بخواند که سیستم همه را می‌خواند.</p>
       <div class="cta-row">
         <a href="#formats" class="btn btn-primary">خواندنِ رمان</a>
-        <a href="#watch" class="btn btn-ghost">تماشای مجموعه</a>
+        <a href="#watch" class="btn btn-ghost">تماشای فیلم</a>
       </div>
     </div>
     <div class="cover-wrap">
@@ -275,7 +281,7 @@
     <p class="first">ساعت ۰۵:۱۲ است و شهر هنوز وانمود می‌کند آرام است. هاله‌ی ساعت‌ها در موج‌هایی نرم سبز می‌زند. فلش‌های کفِ زمین در لحظه جابه‌جا می‌شوند و بدن‌ها را به‌سوی کم‌هزینه‌ترین راهرو می‌رانند، کم‌خطرترین راهرو — راهرویی که مدل را راضی می‌کند. این بی‌لایت است: سیستمی که هرگز صدایش را بلند نمی‌کند، هرگز کسی را دستگیر نمی‌کند و هرگز از تماشا دست نمی‌کشد. مجازات نمی‌کند. بلکه <em>کمک می‌کند</em>.</p>
     <div class="pull">&gt; آستانه‌ها. صف‌ها. مخروط‌های پوشش. خروجی‌ها.<br>&gt; او جهان را همان‌گونه می‌خواند که بی‌لایت می‌خواند.</div>
     <p>ایزی با نامی عاریتی از گذرگاهِ زیرزمینی می‌گذرد، صفحه‌ی ساعتش خاموش و حرکاتش پاک. می‌داند نورِ سبز چه بهایی دارد — و در انتظارِ هر کسی که شهر تصمیم بگیرد بی‌سروصدا کمی بیش از حد به او «کمک» کند، چه چیزی نشسته است. وقتی رضایت به پروتکل بدل می‌شود و حریمِ خصوصی به وثیقه، تنها راهِ بیرون‌رفتن آن است که ماشین را بهتر از سازندگانش بفهمی.</p>
-    <p><strong>Baylight After Image</strong> داستانی است درباره‌ی معماریِ نرمِ کنترل — که در سه قالب روایت می‌شود: یک رمان، یک کتاب صوتی و یک مجموعه‌ی میکرودراما.</p>
+    <p><strong>Baylight After Image</strong> داستانی است درباره‌ی معماریِ نرمِ کنترل — که در سه قالب روایت می‌شود: یک رمان، یک کتاب صوتی و یک فیلم.</p>
   </div>
 </section>
 
@@ -299,10 +305,10 @@
         <a href="#audio" class="link">اکنون بشنو ←</a>
       </div>
       <div class="card reveal">
-        <div class="num">۰۳ / میکرودراما</div>
+        <div class="num">۰۳ / فیلم</div>
         <h3>پرده</h3>
-        <p>مجموعه‌ای عمودی که این جهان را قسمت‌به‌قسمت اقتباس می‌کند. قسمت‌های تازه با انتشار، اضافه می‌شوند.</p>
-        <a href="#watch" class="link">تماشای مجموعه ←</a>
+        <p>جهانِ بی‌لایت در بیست‌وپنج دقیقه، همراه با تریلرِ رسمی و یک فیلمِ کوتاهِ عمودی.</p>
+        <a href="#watch" class="link">تماشای فیلم ←</a>
       </div>
     </div>
   </div>
@@ -342,27 +348,53 @@
   </div>
 </section>
 
-<!-- MICRODRAMA -->
+<!-- FILM -->
 <section id="watch">
   <div class="wrap">
-    <div class="eyebrow">میکرودراما</div>
-    <h2 class="sec">مجموعه</h2>
-    <p class="sec-lead">جهانِ بی‌لایت، روی پرده — اقتباسی قسمت‌به‌قسمت.</p>
+    <div class="eyebrow">فیلم</div>
+    <h2 class="sec">فیلم</h2>
+    <p class="sec-lead">جهانِ بی‌لایت، روی پرده — بیست‌وپنج دقیقه.</p>
 
-    <!-- The series plays from the YouTube playlist, so new episodes added
-         to it appear here without a site change. To switch playlists,
-         replace the ID after list= in both URLs below. -->
-    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> مجموعه‌ی کامل — فهرست پخش</div>
+    <!-- Three videos on YouTube: the film, its trailer and a vertical short.
+         A new video needs a new embed here; to replace one, change its ID. -->
+    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> فیلم — ۲۵ دقیقه</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
         loading="lazy"
-        src="https://www.youtube.com/embed/videoseries?list=PLbLUaN-XA2Lo&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
-        title="Baylight After Image — the full series playlist"
+        src="https://www.youtube.com/embed/kSKY7h-ahDo?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+        title="Baylight After Image — the film"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </div>
-    <a href="https://www.youtube.com/playlist?list=PLbLUaN-XA2Lo" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:18px">باز کردنِ فهرست پخش در یوتیوب →</a>
+
+    <div class="clips">
+      <div>
+        <div class="ep-tag"><span class="green">●</span> تریلرِ رسمی</div>
+        <div class="video-frame">
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/B6Jmwlt2udc?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+            title="Baylight After Image — official trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="ep-tag"><span class="green">●</span> فیلمِ کوتاهِ عمودی</div>
+        <div class="video-frame vertical">
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/2IA3N-QaJcE?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+            title="Baylight After Image — vertical short"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/@baylightcity" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:18px">تماشا در یوتیوب ←</a>
   </div>
 </section>
 
@@ -424,7 +456,7 @@
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center">در سبز بمان</div>
     <h2 class="sec">باخبر شو</h2>
-    <p class="sec-lead" style="margin:0 auto">فصل‌های تازه، قسمت‌های تازه و خبرهای انتشار از جهانِ بی‌لایت. بدونِ هیاهو — فقط سیگنال.</p>
+    <p class="sec-lead" style="margin:0 auto">فصل‌های تازه، اثرهای تازه و خبرهای انتشار از جهانِ بی‌لایت. بدونِ هیاهو — فقط سیگنال.</p>
     <form id="signupForm">
       <input type="email" id="email" placeholder="your@email.com" required aria-label="Email address" />
       <button type="submit" class="btn btn-primary">اشتراک</button>
@@ -437,7 +469,7 @@
 <footer>
   <div class="wrap">
     <div class="brand">BAYLIGHT <span class="green">·</span> AFTER IMAGE</div>
-    <div class="meta">رمان، کتابِ صوتی و میکرودراما، اثرِ جیمز پورتمن · © ۲۰۲۶ جیمز پورتمن</div>
+    <div class="meta">رمان، کتابِ صوتی و فیلم، اثرِ جیمز پورتمن · © ۲۰۲۶ جیمز پورتمن</div>
   </div>
 </footer>
 

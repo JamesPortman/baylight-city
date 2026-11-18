@@ -26,7 +26,7 @@ PAGES = {"home": "index.html", "prequel": "prequel.html"}
 HEAD = {
  "fr": {
   "home": ("Baylight After Image — un roman de James Portman",
-           "La ville ne punit pas. Elle aide. Un thriller de surveillance en futur proche, signé James Portman — lisez le roman, écoutez le livre audio, regardez le microdrame.",
+           "La ville ne punit pas. Elle aide. Un thriller de surveillance en futur proche, signé James Portman — lisez le roman, écoutez le livre audio, regardez le film.",
            "Baylight After Image", "La ville ne punit pas. Elle aide."),
   "prequel": ("Enregistrement original — une préquelle de Baylight par James Portman",
            "Enregistrement original — une préquelle gratuite de Baylight After Image. Une comédienne de doublage entend sa propre chaleur transformée en instrument de docilité de la ville.",
@@ -34,7 +34,7 @@ HEAD = {
            "Ils n’ont pas volé une voix. Ils ont volé une façon de prendre soin.")},
  "es": {
   "home": ("Baylight After Image — una novela de James Portman",
-           "La ciudad no castiga. Ayuda. Un thriller de vigilancia de un futuro cercano, de James Portman — lee la novela, escucha el audiolibro, mira el microdrama.",
+           "La ciudad no castiga. Ayuda. Un thriller de vigilancia de un futuro cercano, de James Portman — lee la novela, escucha el audiolibro, mira la película.",
            "Baylight After Image", "La ciudad no castiga. Ayuda."),
   "prequel": ("Grabación original — una precuela de Baylight por James Portman",
            "Grabación original — una precuela gratuita de Baylight After Image. Una actriz de voz oye su propia calidez convertida en el instrumento de obediencia de la ciudad.",
@@ -42,7 +42,7 @@ HEAD = {
            "No robaron una voz. Robaron una forma de cuidar.")},
  "pt": {
   "home": ("Baylight After Image — um romance de James Portman",
-           "A cidade não pune. Ela ajuda. Um thriller de vigilância num futuro próximo, de James Portman — leia o romance, ouça o audiolivro, assista ao microdrama.",
+           "A cidade não pune. Ela ajuda. Um thriller de vigilância num futuro próximo, de James Portman — leia o romance, ouça o audiolivro, assista ao filme.",
            "Baylight After Image", "A cidade não pune. Ela ajuda."),
   "prequel": ("Gravação original — uma prequela de Baylight por James Portman",
            "Gravação original — uma prequela gratuita de Baylight After Image. Uma dubladora ouve o próprio acolhimento transformado no instrumento de obediência da cidade.",
@@ -50,7 +50,7 @@ HEAD = {
            "Não roubaram uma voz. Roubaram um modo de cuidar.")},
  "zh": {
   "home": ("Baylight After Image — 詹姆斯·波特曼的长篇小说",
-           "城市不惩罚。它帮助你。詹姆斯·波特曼的近未来监控惊悚小说——阅读小说、收听有声书、观看微剧。",
+           "城市不惩罚。它帮助你。詹姆斯·波特曼的近未来监控惊悚小说——阅读小说、收听有声书、观看电影。",
            "Baylight After Image", "城市不惩罚。它帮助你。"),
   "prequel": ("原始录音 — Baylight 前传，詹姆斯·波特曼著",
            "原始录音 — Baylight After Image 的免费前传。一位配音女演员听见自己的温柔被改造成城市的顺从工具。",
@@ -58,7 +58,7 @@ HEAD = {
            "他们偷走的不是一个声音，而是一种关怀的方式。")},
  "fa": {
   "home": ("Baylight After Image — رمانی از جیمز پورتمن",
-           "شهر مجازات نمی‌کند. کمک می‌کند. یک تریلرِ نظارتیِ آینده‌ی نزدیک از جیمز پورتمن — رمان را بخوانید، کتابِ صوتی را بشنوید، میکرودراما را تماشا کنید.",
+           "شهر مجازات نمی‌کند. کمک می‌کند. یک تریلرِ نظارتیِ آینده‌ی نزدیک از جیمز پورتمن — رمان را بخوانید، کتابِ صوتی را بشنوید، فیلم را تماشا کنید.",
            "Baylight After Image", "شهر مجازات نمی‌کند. کمک می‌کند."),
   "prequel": ("ضبطِ اصلی — پیش‌درآمدی بر Baylight از جیمز پورتمن",
            "ضبطِ اصلی — پیش‌درآمدی رایگان بر Baylight After Image. یک صداپیشه می‌شنود که گرمای خودش به ابزارِ فرمان‌برداریِ شهر بدل شده است.",

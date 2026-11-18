@@ -3,7 +3,7 @@
 Built with [Claude Code](https://claude.com/claude-code).
 
 The hub for *Baylight: After Image* — a near-future thriller told as a novella, an
-audiobook and a microdrama series — served in English, Mandarin, Spanish, French,
+audiobook and a film — served in English, Mandarin, Spanish, French,
 Portuguese and Persian. Live at [baylight.city](https://baylight.city).
 
 Hand-coded and static: no framework, no CMS. Everything the pages load — cover

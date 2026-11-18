@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Baylight After Image — 詹姆斯·波特曼的长篇小说</title>
-<meta name="description" content="城市不惩罚。它帮助你。詹姆斯·波特曼的近未来监控惊悚小说——阅读小说、收听有声书、观看微剧。" />
+<meta name="description" content="城市不惩罚。它帮助你。詹姆斯·波特曼的近未来监控惊悚小说——阅读小说、收听有声书、观看电影。" />
 <meta property="og:title" content="Baylight After Image" />
 <meta property="og:description" content="城市不惩罚。它帮助你。" />
 <meta property="og:image" content="https://baylight.city/assets/social-card.jpg" />
@@ -183,13 +183,19 @@
   .player .note{font-size:13px;color:var(--muted);margin-top:14px}
   @media(max-width:780px){.audio .grid{grid-template-columns:1fr;gap:30px}}
 
-  /* MICRODRAMA */
+  /* FILM */
   .video-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);
     box-shadow:0 30px 80px rgba(0,0,0,.6);margin-top:40px;background:#000;
     aspect-ratio:16/9}
   .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
   .ep-tag{display:inline-flex;gap:8px;align-items:center;margin-top:18px;color:var(--muted);
     font-family:'JetBrains Mono';font-size:13px}
+  /* The trailer (16:9) beside the vertical short (9:16) at the same height:
+     equal heights need widths in the ratio (16/9)^2, i.e. 256:81. */
+  .clips{display:grid;grid-template-columns:256fr 81fr;gap:24px;margin-top:40px;align-items:start}
+  .clips .video-frame{margin-top:12px}
+  .video-frame.vertical{aspect-ratio:9/16}
+  @media (max-width:700px){.clips{grid-template-columns:1fr}.video-frame.vertical{max-width:340px}}
 
   /* CHAPTERS */
   .chapters{background:var(--bg-2);border-top:1px solid var(--line)}
@@ -235,7 +241,7 @@
       <a href="#story">这座城市</a>
       <a href="#formats">体验</a>
       <a href="#audio">有声书</a>
-      <a href="#watch">微短剧</a>
+      <a href="#watch">电影</a>
       <a href="#prequel">前传</a>
       <a href="#signup">最新动态</a>
     </nav>
@@ -256,7 +262,7 @@
       <p class="lede">一部近未来惊悚故事：安全即监控，同意即牢笼，而一个女人学会像系统读取所有人那样去读取系统。</p>
       <div class="cta-row">
         <a href="#formats" class="btn btn-primary">阅读小说</a>
-        <a href="#watch" class="btn btn-ghost">观看剧集</a>
+        <a href="#watch" class="btn btn-ghost">观看电影</a>
       </div>
     </div>
     <div class="cover-wrap">
@@ -274,7 +280,7 @@
     <p class="first">05:12，城市仍假装平静。手表的光晕以柔和的波纹闪着绿光。地面的箭头实时变换，把人群驱赶向最便宜的走廊、最少风险的走廊——那条让模型满意的走廊。这就是 Baylight：一个从不提高嗓门、从不逮捕、也从不停止注视的系统。它不惩罚。它 <em>帮助</em>.</p>
     <div class="pull">&gt; 阈值。队列。覆盖锥。出口。<br>&gt; 她像 Baylight 那样阅读这个世界。</div>
     <p>伊兹用一个借来的名字穿过地下通道，表盘黑暗，动作干净利落。她知道那道绿灯的代价——也知道那些被城市悄悄「帮」得过了头的人会有什么下场。当同意变成协议、隐私变成抵押，唯一的出路就是比造出这台机器的人更懂这台机器。</p>
-    <p><strong>Baylight After Image</strong> 是一个关于「柔性控制架构」的故事——以三种形式讲述：一部小说、一部有声书，以及一部微短剧剧集。</p>
+    <p><strong>Baylight After Image</strong> 是一个关于「柔性控制架构」的故事——以三种形式讲述：一部小说、一部有声书，以及一部电影。</p>
   </div>
 </section>
 
@@ -298,10 +304,10 @@
         <a href="#audio" class="link">立即收听 →</a>
       </div>
       <div class="card reveal">
-        <div class="num">03 / 微短剧</div>
+        <div class="num">03 / 电影</div>
         <h3>屏幕</h3>
-        <p>一部竖屏剪辑的剧集，逐集改编这个世界。新剧集上线后会陆续加入。</p>
-        <a href="#watch" class="link">观看剧集 →</a>
+        <p>二十五分钟的 Baylight 世界，另附官方预告片和一部竖屏短片。</p>
+        <a href="#watch" class="link">观看电影 →</a>
       </div>
     </div>
   </div>
@@ -341,27 +347,53 @@
   </div>
 </section>
 
-<!-- MICRODRAMA -->
+<!-- FILM -->
 <section id="watch">
   <div class="wrap">
-    <div class="eyebrow">微短剧</div>
-    <h2 class="sec">剧集</h2>
-    <p class="sec-lead">Baylight 的世界，搬上屏幕——逐集改编。</p>
+    <div class="eyebrow">电影</div>
+    <h2 class="sec">电影</h2>
+    <p class="sec-lead">Baylight 的世界，搬上屏幕——二十五分钟。</p>
 
-    <!-- The series plays from the YouTube playlist, so new episodes added
-         to it appear here without a site change. To switch playlists,
-         replace the ID after list= in both URLs below. -->
-    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> 完整剧集 —— 播放列表</div>
+    <!-- Three videos on YouTube: the film, its trailer and a vertical short.
+         A new video needs a new embed here; to replace one, change its ID. -->
+    <div class="ep-tag" style="margin-top:34px"><span class="green">●</span> 电影 —— 25 分钟</div>
     <div class="video-frame" style="margin-top:12px">
       <iframe
         loading="lazy"
-        src="https://www.youtube.com/embed/videoseries?list=PLbLUaN-XA2Lo&amp;rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
-        title="Baylight After Image — the full series playlist"
+        src="https://www.youtube.com/embed/kSKY7h-ahDo?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+        title="Baylight After Image — the film"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </div>
-    <a href="https://www.youtube.com/playlist?list=PLbLUaN-XA2Lo" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:18px">在 YouTube 上打开播放列表 →</a>
+
+    <div class="clips">
+      <div>
+        <div class="ep-tag"><span class="green">●</span> 官方预告片</div>
+        <div class="video-frame">
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/B6Jmwlt2udc?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+            title="Baylight After Image — official trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <div>
+        <div class="ep-tag"><span class="green">●</span> 竖屏短片</div>
+        <div class="video-frame vertical">
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/2IA3N-QaJcE?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;cc_load_policy=0&amp;iv_load_policy=3"
+            title="Baylight After Image — vertical short"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/@baylightcity" target="_blank" rel="noopener" class="link" style="display:inline-block;margin-top:18px">在 YouTube 上观看 →</a>
   </div>
 </section>
 
@@ -423,7 +455,7 @@
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center">保持绿色</div>
     <h2 class="sec">接收通知</h2>
-    <p class="sec-lead" style="margin:0 auto">来自 Baylight 世界的新章节、新剧集与上线消息。没有噪音——只有信号。</p>
+    <p class="sec-lead" style="margin:0 auto">来自 Baylight 世界的新章节、新作品与上线消息。没有噪音——只有信号。</p>
     <form id="signupForm">
       <input type="email" id="email" placeholder="your@email.com" required aria-label="Email address" />
       <button type="submit" class="btn btn-primary">订阅</button>
@@ -436,7 +468,7 @@
 <footer>
   <div class="wrap">
     <div class="brand">BAYLIGHT <span class="green">·</span> AFTER IMAGE</div>
-    <div class="meta">詹姆斯·波特曼的小说、有声书与微短剧 · © 2026 James Portman</div>
+    <div class="meta">詹姆斯·波特曼的小说、有声书与电影 · © 2026 James Portman</div>
   </div>
 </footer>
 
